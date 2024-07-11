@@ -13,7 +13,7 @@
 
 <body>
 
-  <nav class="navbar navbar-dark fixed-top">
+  <!-- <nav class="navbar navbar-dark fixed-top">
     <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasDarkNavbar"
       aria-controls="offcanvasDarkNavbar" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
@@ -45,13 +45,13 @@
           </li>
       </div>
     </div>
-  </nav>
+  </nav> -->
 
 
   <aside class="bg-black950">
-    <h3>Recursos Humanos</h3>
+    <img src="/assets/img/LOGO_ALCALDIA.png" alt="" class="w-50 h-auto mx-auto">
 
-    <nav>
+    <nav class="text-white fw-bolder">
 
       <ul>
         <li class="item item-selected">
@@ -67,7 +67,7 @@
 
     </nav>
 
-    <nav>
+    <nav class="text-white fw-bolder">
 
       <ul>
         <li class="item">
@@ -82,7 +82,7 @@
   </aside>
 
   <main class="bg-blue100">
-    <header class="border-bottom border-black p-4">
+    <header class="border-bottom border-black p-4 d-flex justify-content-between align-items-center">
 
       <img src="../assets/img/YD.png" alt="" />
 
@@ -149,10 +149,21 @@
           </table>
         </div>
 
-        <div>
-          <h6> PREV - 1 - 2 - 3 - 4 - 5 - SIGUIENTE</PREV>
-          </h6>
-        </div>
+        <nav aria-label="...">
+          <ul class="pagination">
+            <li class="page-item disabled">
+              <a class="page-link">Previous</a>
+            </li>
+            <li class="page-item active" aria-current="page"><a class="page-link" href="#">1</a></li>
+            <li class="page-item">
+              <a class="page-link" href="#">2</a>
+            </li>
+            <li class="page-item"><a class="page-link" href="#">3</a></li>
+            <li class="page-item">
+              <a class="page-link" href="#">Next</a>
+            </li>
+          </ul>
+        </nav>
 
       </section>
 

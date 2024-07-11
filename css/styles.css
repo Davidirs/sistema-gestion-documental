@@ -63,12 +63,7 @@ a{
 }
 
 header{
-    display: flex;
     width: 100%;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-    padding: 24px;
 }   
 
 main{
@@ -79,14 +74,12 @@ i{
     margin: 8px;
 }
 
-.row{
-    display: flex;
-    flex-direction: row;
-}
+    /* .row{
+        display: flex;
+        flex-direction: row;
+    } */
 
 .item{
-    color: white !important;
-    font-weight: bold;
     padding: 8px 0;
 }
 
