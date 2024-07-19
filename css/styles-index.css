@@ -1,0 +1,52 @@
+*{
+    padding: 0;
+    margin: 0;
+}
+
+#hero{
+    background-image: url("/assets/img/bg-blue.png");
+    background-size: cover;
+    height: 100%;
+}
+
+.bg-blue{
+    background-color: #7280FF;
+}
+
+.navbar #hero {
+    background-color: transparent !important;
+}
+
+.card{
+    border: none !important;
+}
+
+.gallery {
+    --n: 1; /* number of rows*/
+    --m: 4; /* number of columns */
+    --g: 3px;  /* control the gap */
+    --f: .8;   /* control the scale factor */
+    
+    display: grid;
+    gap: var(--g);
+    width: 90vw;
+    height: 50vh;
+    grid-template-columns: repeat(var(--m),auto);
+}
+
+.gallery > img {
+    width: 0;
+    height: 0;
+    min-height: 100%;
+    min-width: 100%;
+    object-fit: cover;
+    cursor: pointer;
+    filter: grayscale(80%);
+    transition: .35s linear;
+}
+
+.gallery img:hover{
+    filter: grayscale(0);
+    width:  calc(50vh*var(--f)/var(--n));
+    height: calc(90vw*var(--f)/var(--m));
+}
