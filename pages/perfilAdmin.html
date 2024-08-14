@@ -79,7 +79,7 @@
                <h3>Nombre de Adminstrador/empleado </h3>
               <p>Yulianny Rodriguez</p></div>
               <div class="col-3">
-                  <button class="btn btn-primary col-9">Nuevo</button>
+                  <button class="btn btn-primary col-9" type="button" data-bs-toggle="modal" data-bs-target="#staticBackdrop">Editar perfil</button>
               </div>
             
              
@@ -122,6 +122,63 @@
         </section>
 
     </main>
+    <!-- Modal -->
+<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="staticBackdropLabel">Editar perfil</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form action="" class="d-flex flex-column grid gap-2 ">
+          <div>
+            <label for="" class="fw-semibold">Nombre completo</label>
+            <input type="text" class="rounded-2 p-1 col-11" >
+          </div>
+
+          <div class="d-flex grid gap-1">
+            
+            <div class="col-6 d-flex flex-column">
+             <label for="" class="fw-semibold">Cedula</label>
+             <input type="text" class="rounded-2 p-1 col-11" >
+           </div>
+
+            <div class="col-6 d-flex flex-column">
+              <label for="" class="fw-semibold">Departamento/direccion</label>
+              <input type="text" class="rounded-2 p-1 col-11">
+            </div>
+          </div>
+
+           <div class="d-flex grid gap-1">
+
+             <div class="col-6 d-flex flex-column">
+              <label for="" class="fw-semibold">Cargo</label>
+              <input type="text" class="rounded-2 p-1 col-11">
+             </div>
+
+            <div class="col-6 d-flex flex-column">
+              <label for="" class="fw-semibold">Año de ingreso</label>
+              <input type="date" class="rounded-2 p-1 col-11">
+            </div>
+
+          </div>
+           
+        </form>
+      </div>
+      <div class="d-flex flex-row m-3 align-items-center justify-content-center">
+        <div class="col-6 d-flex justify-content-center">
+         <button type="button" class="btn btn-secondary col-9" data-bs-dismiss="modal">Cancelar</button>
+       </div>
+
+       <div class="col-6 d-flex justify-content-center">
+         <button type="button" class="btn btn-primary col-9">Aceptar</button>
+       </div>
+        
+      </div>
+    </div>
+  </div>
+</div>
 	
     <script src="https://kit.fontawesome.com/9fd95bcc65.js" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
