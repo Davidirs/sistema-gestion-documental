@@ -41,6 +41,10 @@
     border-radius: 100%;
 } 
 
+.text-blue950{
+    color: #131c53;
+}
+
 body{
     display: flex;
     width: 100%;
@@ -101,5 +105,11 @@ i{
 
 .vh-70{
     height: 70vh;
+}
+
+.bg-blue{
+    background: rgb(76,115,255);
+    background: linear-gradient(90deg, rgba(76,115,255,1) 0%, rgba(32,55,226,1) 100%);
+    border:none;
 }
 
