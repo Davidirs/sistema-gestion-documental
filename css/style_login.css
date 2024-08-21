@@ -56,3 +56,7 @@ i{
     justify-content: center;
 }
 
+.navbar-brand img{
+    max-width: 100px;
+}
+
