@@ -117,10 +117,6 @@ i{
     margin: 8px;
 }
 
-.icono{
-    color: black;
-}
-
 .bg-blue{
     background: rgb(76,115,255);
     background: linear-gradient(90deg, rgba(76,115,255,1) 0%, rgba(32,55,226,1) 100%);
@@ -139,4 +135,5 @@ i{
     position: absolute;
     bottom: .5rem;
     right: 1rem;
+    color: #0000;
 }
