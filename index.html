@@ -10,9 +10,9 @@
     <title>Alcaldia Municipio Cruz Paredes</title>
   </head>
 
-  <body>
+  <body class="">
 
-    <header class="bg-blue">
+    <header class="p-5 pb-0 bg-blue">
       <nav class="navbar navbar-expand d-flex justify-content-end">
 
         <div class="collapse navbar-collapse container-fluid d-flex justify-content-between fw-bold text-black" id="navbarNav">
@@ -62,7 +62,7 @@
         </section>
       </header>
 
-      <section class="" id="historia">
+      <section class="p-5" id="historia">
         <h2 class="text-center fw-bold mt-4">Historia de la Alcaldia</h2>
 
         <div class="d-flex flex-sm-column flex-lg-row">
@@ -96,7 +96,7 @@
     </div>
       </section>
 
-      <section class="m-3 d-flex justify-content-center flex-column ">
+      <section class="p-5 d-flex justify-content-center flex-column ">
         <h2 class="d-flex justify-content-center fw-bold">Zonas del Municipio Cruz Paredes</h2>
         <div class="gallery">
           <img src="assets/img/represa.jpg" alt="a forest after an apocalypse">
@@ -113,5 +113,24 @@
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
     <script src="https://kit.fontawesome.com/9fd95bcc65.js" crossorigin="anonymous"></script>
+    <script type="module">
+      // Import the functions you need from the SDKs you need
+      import { initializeApp } from "https://www.gstatic.com/firebasejs/10.13.2/firebase-app.js";
+      // TODO: Add SDKs for Firebase products that you want to use
+      // https://firebase.google.com/docs/web/setup#available-libraries
+    
+      // Your web app's Firebase configuration
+      const firebaseConfig = {
+        apiKey: "AIzaSyCxwk4OemZJXVDXLQa13ZBGTd4m7P3lvDY",
+        authDomain: "yd-tesis.firebaseapp.com",
+        projectId: "yd-tesis",
+        storageBucket: "yd-tesis.appspot.com",
+        messagingSenderId: "103659674948",
+        appId: "1:103659674948:web:3b1ee90665e0e3d4d0cb11"
+      };
+    
+      // Initialize Firebase
+      const app = initializeApp(firebaseConfig);
+    </script>
   </body>
 </html>
