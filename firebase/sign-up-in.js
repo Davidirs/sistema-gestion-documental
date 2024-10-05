@@ -19,7 +19,6 @@ formRegister.addEventListener("submit", (evento)=>{
 })
 
 
-
 function crearUsuario(){
   
   //guardame en la variable email el valor del input name email
