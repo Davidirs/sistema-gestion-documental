@@ -10,10 +10,10 @@
 </head>
 <body>
 
-	 <aside class="bg-black950">
+	 <aside class="bg-black950 d-none d-md-flex">
     <img src="../assets/img/logo_sgd.png" alt="" class="w-50 h-auto mx-auto">
 
-    <nav class="text-white fw-bolder">
+    <nav class="text-white fw-bolder ">
 
       <ul class="">
         <li class="item">
@@ -46,64 +46,102 @@
     </nav>
   </aside>
    <main class="bg-blue100">
-        <header class="border-bottom border-black p-4 d-flex justify-content-between align-items-center">
+    <header class="border-bottom border-black p-4 d-flex justify-content-between align-items-center">
 
-            <img src="../assets/img/YD.png" alt=""/>
-                <ul class="d-flex align-items-center">
-                  <li>
-                    <a href="#" onclick="window.location.href='perfilAdmin.html'"><i class="fa-regular fa-circle-user icono"></i></a>
-                  </li>
-                  <li>Bienvenido, Admin!</li>
-                    <li>
-                        <a href="#"><i class="fa-regular fa-bell text-black"></i></a>
-                    </li>
-                </ul>
-            </nav>
+      <img src="../assets/img/YD.png" alt="">
 
-        </header>
+
+      <nav class="d-flex col-3 col-md-4">
+        <ul class="d-flex align-items-center d-none d-md-flex">
+          <li>
+            <a href="#" onclick="window.location.href='perfilAdmin.html'"><i class="fa-regular fa-circle-user icono"></i></a>
+          </li>
+          <li>Bienvenido, Admin!</li>
+        </ul>
+        <ul class="d-sm-flex d-md-none d-lg-none ">
+          <div class="dropdown">
+            <a class="btn bg-transparent dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
+              Menu
+            </a>
+          
+            <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+              <li>
+                <a href="#" class="text-decoration-none" onclick="window.location.href='perfilAdmin.html'"><i class="fa-regular fa-circle-user"></i>Perfil</a>
+              </li>
+              <li class="item item">
+                <a class="text-decoration-none" href="#" onclick="window.location.href='home.html'"><i class="fa-solid fa-users"></i>Inicio</a>
+                </li>
+                <li class="item item">
+                <a class="text-decoration-none" href="#" onclick="window.location.href='department.html'"><i class="fa-solid fa-users"></i>Departamentos</a>
+                </li>
+                <li class="item">
+                  <a class="text-decoration-none" href="#" onclick="window.location.href='employee.html'"><i class="fa-solid fa-address-card"></i>Empleados</a>
+                </li>
+                <li class="item">
+                  <a class="text-decoration-none" href="#" onclick="window.location.href='document.html'"><i class="fa-solid fa-id-card-clip"></i>Documentos</a>
+                </li>
+                <li class="item">
+                  <a class="text-decoration-none" href="#" onclick="window.location.href='setting.html'"><i class="fa-solid fa-gears"></i>Configuración</a>
+                 </li>
+                 <li class="item">
+                   <a class="text-decoration-none" href="#" onclick="window.location.href='/index.html'"><i class="fa-solid fa-right-from-bracket"></i>Salir</a>
+                 </li>
+            </ul>
+          </div>
+        </ul>
+      </nav>
+
+    
+
+    </header>
 
         <section>
             <h3 class="m-3">Perfil del administrador</h3>
             <!-- <div class="rounded-full bg-white col-2 p-4 m-3" style="width: 200px; height: 200px;"><img src="" alt=""></div> -->
             <section class="bg-white p-2 m-3 d-flex align-items-center shadow-p rounded-2">
-              <div class="infoAdmind col-8">
-               <h3 class="text-blue950">Nombre de Adminstrador/empleado </h3>
-              <p>Yulianny Rodriguez</p></div>
+              <div class="infoAdmind col-12 d-flex">
+
+              <div class="col-9">
+                <h3 class="text-blue950">Nombre de Adminstrador/empleado </h3>
+                <p>Yulianny Rodriguez</p>
+              </div>
+
               <div class="col-3">
                 <button class="btn bg-blue text-white col-9 btn-sm px-1 py-0" type="button" data-bs-toggle="modal" data-bs-target="#staticBackdrop" aria-label="Editar perfil">
                   <i class="fa-solid fa-user-pen me-2"></i> Editar perfil
                 </button>
-              </div>     
+              </div>
+            </div>   
             </section>
 
             <section class="bg-white shadow-p p-4 m-3 rounded">
               <p class="text-center fs-5 fw-semibold">Datos de Administrador/empleado</p>
               <div>
-                <div class="d-flex grid gap-2">
+                <div class="d-flex flex-column flex-md-row grid gap-2">
 
-                  <div class="col-4">
+                  <div class="col-12 col-md-4">
                     <p class="fs-5 fw-semibold">Nombre completo</p>
                     <p class="bg-blue200 p-2 rounded-2 col-10">Yulianny Andreina Rodriguez Moreno</p>
                   </div>
-                  <div class="col-4">
+                  <div class="col-12 col-md-4">
                     <p class="fs-5 fw-semibold">Departamento</p>
                     <p class="bg-blue200 p-2 rounded-2 col-9 text-center">Ing.Informatica</p>
                   </div>
-                  <div class="col-3">
+                  <div class="col-12 col-md-3">
                     <p class="fs-5 fw-semibold">Año de ingreso</p>
                     <p class="bg-blue200 p-2 rounded-2 col-9 text-center">2024</p>
                   </div>
                 </div>
 
-                <div class="d-flex grid gap-2">
+                <div class="d-flex flex-column flex-md-row grid gap-2">
                   
-                  <div class="col-5">
-                    <p class="fs-5 fw-semibold">Cedulado de identida</p>
-                    <p class="bg-blue200 p-2 rounded-2 col-7 text-center">27.960.705</p>
+                  <div class="col-12 col-md-5">
+                    <p class="fs-5 fw-semibold">Cedula de identidad</p>
+                    <p class="bg-blue200 p-2 rounded-2 col-9 col-md-7 text-center">27.960.705</p>
                   </div>
-                  <div class="col-4">
+                  <div class="col-12 col-md-4">
                     <p class="fs-5 fw-semibold">Cargo</p>
-                    <p class="bg-blue200 p-2 rounded-2 col-9 text-center">Programadora</p>
+                    <p class="bg-blue200 p-2 rounded-2 col-9 text-center">Diseñadora</p>
                   </div>
                 </div>
 

@@ -13,7 +13,7 @@
 
 <body>
 
-  <aside class="bg-black950">
+  <aside class="bg-black950 d-none d-md-flex">
     <img src="../assets/img/logo_sgd.png" alt="" class="w-50 h-auto mx-auto">
 
     <nav class="text-white fw-bolder">
@@ -50,30 +50,60 @@
   </aside>
 
     <main class="bg-blue100">
-        <header class="border-bottom border-black p-4 d-flex justify-content-between align-items-center">
+      <header class="border-bottom border-black p-4 d-flex justify-content-between align-items-center">
 
-            <img src="../assets/img/YD.png" alt="" />
-
-            <div class="border rounded bg-white">
-                <div class="input-group shadow-p d-flex align-items-center">
-                    <input type="text" placeholder="Buscar empleado.." class="border-0 form-control p-2">
-                    <a href="#"><i class="fa-solid fa-magnifying-glass"></i></a>
-                </div>
+        <img src="../assets/img/YD.png" alt="">
+  
+        <div class="border rounded bg-white col-4 col-md-4">
+          <div class="input-group shadow-p d-flex align-items-center">
+            <input type="text" placeholder="Buscar departamento.." class="border-0 form-control p-2">
+            <a href="#"><i class="fa-solid fa-magnifying-glass"></i></a>
+          </div>
+        </div>
+  
+        <nav class="d-flex col-3 col-md-4">
+          <ul class="d-flex align-items-center d-none d-md-flex">
+            <li>
+              <a href="#" onclick="window.location.href='perfilAdmin.html'"><i class="fa-regular fa-circle-user icono"></i></a>
+            </li>
+            <li>Bienvenido, Admin!</li>
+          </ul>
+          <ul class="d-sm-flex d-md-none d-lg-none ">
+            <div class="dropdown">
+              <a class="btn bg-transparent dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
+                Menu
+              </a>
+            
+              <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                <li>
+                  <a href="#" class="text-decoration-none" onclick="window.location.href='perfilAdmin.html'"><i class="fa-regular fa-circle-user"></i>Perfil</a>
+                </li>
+                <li class="item item">
+                  <a class="text-decoration-none" href="#" onclick="window.location.href='home.html'"><i class="fa-solid fa-users"></i>Inicio</a>
+                  </li>
+                  <li class="item item">
+                  <a class="text-decoration-none" href="#" onclick="window.location.href='department.html'"><i class="fa-solid fa-users"></i>Departamentos</a>
+                  </li>
+                  <li class="item">
+                    <a class="text-decoration-none" href="#" onclick="window.location.href='employee.html'"><i class="fa-solid fa-address-card"></i>Empleados</a>
+                  </li>
+                  <li class="item">
+                    <a class="text-decoration-none" href="#" onclick="window.location.href='document.html'"><i class="fa-solid fa-id-card-clip"></i>Documentos</a>
+                  </li>
+                  <li class="item">
+                    <a class="text-decoration-none" href="#" onclick="window.location.href='setting.html'"><i class="fa-solid fa-gears"></i>Configuración</a>
+                   </li>
+                   <li class="item">
+                     <a class="text-decoration-none" href="#" onclick="window.location.href='/index.html'"><i class="fa-solid fa-right-from-bracket"></i>Salir</a>
+                   </li>
+              </ul>
             </div>
-
-            <nav>
-                <ul class="d-flex  align-items-center">
-                    <li>
-                        <a href="#" onclick="window.location.href='perfilAdmin.html'"><i class="fa-regular fa-circle-user icono"></i></a>
-                      </li>
-                      <li>Bienvenido, Admin!</li>
-                    <li>
-                        <a href="#"><i class="fa-regular fa-bell icono"></i></a>
-                    </li>
-                </ul>
-            </nav>
-
-        </header>
+          </ul>
+        </nav>
+  
+      
+  
+      </header>
 
         <section>
             <div class="d-flex justify-content-between m-3 align-items-center" role="group">

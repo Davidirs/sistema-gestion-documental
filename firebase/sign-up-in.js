@@ -10,7 +10,7 @@ formLogin.addEventListener("submit", (evento)=>{
 formRegister.addEventListener("submit", (evento)=>{
     evento.preventDefault();
     //si contraseñas coinciden crear usuario sino no
-   /*  if (contraseñasoniguales) {
+  /*  if (contraseñasoniguales) {
       //crear el usuario
     }else{
       //anuncia que estan mal las contraseñas
