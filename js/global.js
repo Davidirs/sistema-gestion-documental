@@ -6,3 +6,10 @@ if (dataUser) {
 }else{
     //document.location
 }
+
+
+
+
+
+
+

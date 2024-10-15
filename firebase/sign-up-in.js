@@ -1,4 +1,6 @@
-import { getAuth, createUserWithEmailAndPassword,signInWithEmailAndPassword  } from "https://www.gstatic.com/firebasejs/10.13.2/firebase-auth.js";
+// import { getAuth, createUserWithEmailAndPassword,signInWithEmailAndPassword  } from "https://www.gstatic.com/firebasejs/10.13.2/firebase-auth.js";
+import "./app.js";
+import { getAuth, createUserWithEmailAndPassword,signInWithEmailAndPassword  } from "https://www.gstatic.com/firebasejs/10.14.1/firebase-auth.js";
 
 const formLogin = document.getElementById("formLogin");
 const formRegister = document.getElementById("formRegister");
@@ -111,6 +113,7 @@ signInWithEmailAndPassword(auth, email, password)
     console.log(
       JSON.parse(localStorage.getItem('dataUser'))
     );
+    location.href="../pages/home.html"
 
   })
 
