@@ -20,20 +20,20 @@ import {
 
   export const ongetDepartament= (callback)=> onSnapshot(collection(db,"departaments"),callback);
 
-//   export const deleteDepartament= (id) => deleteDoc(doc(db, "departaments", id));
+  export const deleteDepartament= (id) => deleteDoc(doc(db, "departaments", id));
 
-//   export const getDepartament = (id) => getDoc(doc(db, "departaments", id));
+  export const getDepartament = (id) => getDoc(doc(db, "departaments", id));
 
-//   export const updateDepartament= (id, newFields)=>
-//   updateDoc(doc(db,"departaments",id),newFields);
+  export const updateDepartament= (id, newFields)=>
+  updateDoc(doc(db,"departaments",id),newFields);
 
 
 const departamentForm= document.getElementById('departament-form');
 const departamentsContainer= document.getElementById("departament-container");
 
-// let editStatus= false;
+let editStatus= false;
 
-// let id="";
+let id="";
 
 window.addEventListener('DOMContentLoaded', async() => {
   ongetDepartament((querySnapshot)=>{
@@ -61,7 +61,7 @@ window.addEventListener('DOMContentLoaded', async() => {
     const btnsDelete= departamentsContainer.querySelectorAll(".btn-delete");
     btnsDelete.forEach(btn=>{
       btn.addEventListener('click',({target:{dataset}})=>{
-       deleteTask(dataset.id);
+       deleteDepartament(dataset.id);
       });
     });
 
@@ -69,13 +69,12 @@ window.addEventListener('DOMContentLoaded', async() => {
 
     btnsEdit.forEach(btn=>{
       btn.addEventListener('click', async({target:{dataset}})=>{
-       const doc = await getTask(dataset.id);
-       const task= doc.data();
-       taskForm["task-title"].value=task.title;
-       taskForm["task-description"].value=task.description;
+       const doc = await getDepartament(dataset.id);
+       const departament= doc.data();
+       departamentForm["departamentTitle"].value=departament.departamentTitle;
        editStatus=true;
        id=doc.id;
-       taskForm['btn-departament-save'].innerText="Actualizar";
+       departamentForm['btn-departament-save'].innerText="Actualizar";
      });
     });
  });
@@ -85,11 +84,18 @@ window.addEventListener('DOMContentLoaded', async() => {
 departamentForm.addEventListener('submit', (e) => {
   e.preventDefault();
   const departamentTitle= departamentForm['departamentTitle'];
-
-  alert("datos guardados");
-  saveDepartament(departamentTitle.value);
+  if (!editStatus) {
+    alert("datos guardados");
+    saveDepartament(departamentTitle.value);
+  } else {
+    updateDepartament( id,{
+      departamentTitle:departamentTitle.value,
+      
+    });
+    editStatus=false;
+    departamentForm['btn-departament-save'].innerText="Guardar";
+  }
    departamentForm.reset();
-// console.log("guardar");
 });
 
 
