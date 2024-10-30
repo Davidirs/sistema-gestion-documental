@@ -14,12 +14,12 @@
         <article class="box d-flex flex-column align-items-center text-white rounded-4 p-3 m-5 shadow-p">
             <h5>Consultar datos de empleado</h5>
             <h6>Ingresar número de cédula</h6>
-            <form method="post">
+            <form id="form">
 
                 <div class="input-group mb-3">
                     <span class="input-group-text" id="basic-addon1">V</span>
-                    <input type="text" class="form-control" placeholder="Ingresar cédula..." aria-label="Username" aria-describedby="basic-addon1">
-                    <a href="#">
+                    <input type="text" class="form-control" placeholder="Ingresar cédula..." aria-label="Username" aria-describedby="basic-addon1" id="cedula">
+                    <a  id="buscador">
                         <i class="fa-solid fa-magnifying-glass icono"  id="basic-addon2" aria-describedby="basic-addon2"></i>
                     </a>
                   </div>
@@ -30,13 +30,19 @@
                         <!-- <input type="submit" value="Consultar" class=" bg-blue text-black rounded-2 shadow-p btn"> -->
                     </a>
 
+                    <!-- <input type="text"  placeholder="Ingresa la cédula">
+            <button >Buscar</button> -->
+            
+
                 
             </form>
+            <div id="containerresult"></div>
         </article>
     </div>
     </section>
     <script src="https://kit.fontawesome.com/9fd95bcc65.js" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
-    <script src="/js/open_eyes.js"></script>
+    <!-- <script src="/js/open_eyes.js"></script> -->
+    <script src="../js/consult.js" type="module"></script>
 </body>
 </html>

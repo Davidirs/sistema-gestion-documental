@@ -92,6 +92,9 @@ window.addEventListener('DOMContentLoaded', async() => {
 
 });
 
+
+
+
 employerForm.addEventListener('submit', (e) => {
   e.preventDefault();
   const name= employerForm['nombre_completo'];
