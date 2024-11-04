@@ -9,7 +9,9 @@ import {
     doc,
     deleteDoc,
     getDoc,
-    updateDoc 
+    updateDoc,
+    where, 
+    query
      } from "https://www.gstatic.com/firebasejs/10.14.1/firebase-firestore.js";
 
  const db= getFirestore();
@@ -30,6 +32,9 @@ import {
 
 const employerForm= document.getElementById('employer-form');
 const employersContainer= document.getElementById("employer-container");
+// const inputBusqueda = document.getElementById("inputBusqueda");
+// const botonBuscar=document.getElementById("botonBuscar");
+
 
 let editStatus= false;
 
@@ -93,8 +98,6 @@ window.addEventListener('DOMContentLoaded', async() => {
 });
 
 
-
-
 employerForm.addEventListener('submit', (e) => {
   e.preventDefault();
   const name= employerForm['nombre_completo'];
@@ -120,6 +123,8 @@ employerForm.addEventListener('submit', (e) => {
   }
    employerForm.reset();
 });
+
+
 
 
 
