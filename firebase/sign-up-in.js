@@ -1,4 +1,6 @@
-import { getAuth, createUserWithEmailAndPassword,signInWithEmailAndPassword  } from "https://www.gstatic.com/firebasejs/10.13.2/firebase-auth.js";
+// import { getAuth, createUserWithEmailAndPassword,signInWithEmailAndPassword  } from "https://www.gstatic.com/firebasejs/10.13.2/firebase-auth.js";
+import "./app.js";
+import { getAuth, createUserWithEmailAndPassword,signInWithEmailAndPassword  } from "https://www.gstatic.com/firebasejs/10.14.1/firebase-auth.js";
 
 const formLogin = document.getElementById("formLogin");
 const formRegister = document.getElementById("formRegister");
@@ -10,14 +12,13 @@ formLogin.addEventListener("submit", (evento)=>{
 formRegister.addEventListener("submit", (evento)=>{
     evento.preventDefault();
     //si contraseñas coinciden crear usuario sino no
-   /*  if (contraseñasoniguales) {
+  /*  if (contraseñasoniguales) {
       //crear el usuario
     }else{
       //anuncia que estan mal las contraseñas
     } */
     crearUsuario();
 })
-
 
 
 function crearUsuario(){
@@ -112,6 +113,7 @@ signInWithEmailAndPassword(auth, email, password)
     console.log(
       JSON.parse(localStorage.getItem('dataUser'))
     );
+    location.href="../pages/home.html"
 
   })
 
