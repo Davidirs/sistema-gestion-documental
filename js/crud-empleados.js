@@ -32,8 +32,7 @@ import {
 
 const employerForm= document.getElementById('employer-form');
 const employersContainer= document.getElementById("employer-container");
-// const inputBusqueda = document.getElementById("inputBusqueda");
-// const botonBuscar=document.getElementById("botonBuscar");
+
 
 
 let editStatus= false;
@@ -67,6 +66,24 @@ window.addEventListener('DOMContentLoaded', async() => {
         </tr> 
      </div>`;
   });
+
+
+  const buscador = document.getElementById('inputBusqueda');
+
+// Función para filtrar los empleados en tiempo real
+function filtrarEmpleados() {
+  const terminoBusqueda = buscador.value.toLowerCase();
+  const filas = employersContainer.querySelectorAll('tr');
+
+  filas.forEach(fila => {
+    const nombreCelda = fila.querySelector('td:nth-child(2)'); // Asumiendo que el nombre está en la segunda celda
+    const nombre = nombreCelda.textContent.toLowerCase();
+    fila.style.display = nombre.includes(terminoBusqueda) ? '' : 'none';
+  });
+}
+
+// Evento para filtrar al escribir en el buscador
+buscador.addEventListener('input', filtrarEmpleados);
 
 
     const btnsDelete= employersContainer.querySelectorAll(".btn-delete");
