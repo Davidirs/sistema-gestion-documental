@@ -20,8 +20,8 @@ const formDocument= document.getElementById('formDocument');
 const documentContainer= document.getElementById("documentContainer");
 
 const db= getFirestore();
-export const saveInfoDocument=(title, date, type,downloadURL)=>
-addDoc(collection(db, "documents"),{title,date, type,downloadURL})
+export const saveInfoDocument=(employer,title, date, type,downloadURL)=>
+addDoc(collection(db, "documents"),{employer,title,date, type,downloadURL})
 
 export const getInfoDocuments= ()=> getDocs(collection(db, "documents"));
 
@@ -81,6 +81,7 @@ window.addEventListener('DOMContentLoaded', async() => {
               <button class="btn btn-danger btn-delete" data-id="${dc.id}"><i class="fa-solid fa-trash-can m-1"></i></button>
               <button class="btn btn-secondary btn-edit" data-id="${dc.id}"><i class="fa-solid fa-pen-to-square m-1"></i></button> 
               </td>
+              <td>${document.employer}</td>
               <td>${document.title}</td>
               <td>${document.type}</td>
               <td>${document.date}</td>
@@ -124,6 +125,7 @@ btnsDelete.forEach((btn) => {
 formDocument.addEventListener("submit", async (e) => {
   e.preventDefault();
 
+  const employer=formDocument["employer"]
   const title = formDocument["title"];
   const type = formDocument["type"];
   const date = formDocument["date"];
@@ -141,7 +143,7 @@ formDocument.addEventListener("submit", async (e) => {
       }
   
       // 2. Save data to Firestore (including downloadURL if uploaded):
-      await saveInfoDocument(title.value, type.value, date.value, downloadURL);
+      await saveInfoDocument(employer.value,title.value, type.value, date.value, downloadURL);
       alert("Datos guardados exitosamente");
   
       formDocument.reset();
