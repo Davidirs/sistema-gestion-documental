@@ -57,6 +57,23 @@ window.addEventListener('DOMContentLoaded', async() => {
      </div>`;
   });
 
+  const buscador = document.getElementById('inputBusqueda');
+
+// Función para filtrar los departamentos en tiempo real
+function filtrarDepartamentos() {
+  const terminoBusqueda = buscador.value.toLowerCase();
+  const filas = departamentsContainer.querySelectorAll('tr');
+
+  filas.forEach(fila => {
+    const nombreCelda = fila.querySelector('td:nth-child(2)'); // Asumiendo que el nombre está en la segunda celda
+    const nombre = nombreCelda.textContent.toLowerCase();
+    fila.style.display = nombre.includes(terminoBusqueda) ? '' : 'none';
+  });
+}
+
+// Evento para filtrar al escribir en el buscador
+buscador.addEventListener('input', filtrarDepartamentos);
+
 
     const btnsDelete= departamentsContainer.querySelectorAll(".btn-delete");
     btnsDelete.forEach(btn=>{

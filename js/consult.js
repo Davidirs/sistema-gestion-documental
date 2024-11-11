@@ -5,9 +5,6 @@ import {
 
 const db = getFirestore();
 
-//  const ongetEmployer= (callback)=> onSnapshot(collection(db,"employers"),callback);
-
-
 const buscador = document.getElementById("buscador");
 const cedula = document.getElementById("cedula");
 const formC = document.getElementById("form");
