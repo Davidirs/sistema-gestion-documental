@@ -3,13 +3,20 @@
     margin: 0;
 }
 
+
+.bg-blue950{
+    background-color: #131c53;
+}
+.text-blue950{
+    color: #131c53;
+}
 section{
     background-image: url(../assets/img/inicio.png);
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
-    width: 100%;
-    height: 100vh;
+    
+    min-height: 100vh;
 }
 
 .box{

@@ -22,14 +22,26 @@ buscador.addEventListener('click', async () => {
 
     querySnapshot.forEach((doc) => {
       const employer = doc.data();
+      console.log (doc.data());
       htmlContent += `
-                <h2>Datos de la Persona</h2>
-                <p><strong>Nombre:</strong> ${employer.name}</p>
-                <p><strong>Cedula:</strong> ${employer.ci}</p>
-                <p><strong>Departamento:</strong> ${employer.departament}</p>
+                <div class="col-12 py-3 d-flex justify-content-center align-items-center bg-blue950 rounded-4">
+                    <h4>Datos del empleado</h4>
+                </div>
+                <div class="p-4 m-3 border border-top-0 rounded-3 shadow-p vh-70 d-flex flex-column justify-content-between bg-white">
+                
+                <p><strong class="bg-blue950 p-1 rounded">Nombre:</strong><span class="text-blue950"> ${employer.name}</span></p>
+                <p><strong class="bg-blue950 p-1 rounded">Cedula:</strong><span class="text-blue950">${employer.ci}</span> </p>
+                <p><strong class="bg-blue950 p-1 rounded">Departamento:</strong><span class="text-blue950">${employer.departament}</span> </p>
+                <p><strong class="bg-blue950 p-1 rounded">Cargo:</strong><span class="text-blue950">${employer.cargo}</span> </p>
+                <p><strong class="bg-blue950 p-1 rounded">Fecha de Ingreso:</strong><span class="text-blue950">${employer.date}</span> </p>
+                </div>
             `;
-    });
-
+            
+          });
+          if (htmlContent=='') {
+      Swal.fire("¡Lo sentimos!", "La cédula ingresada no pertenece a ningun empleado", "error");
+              
+    }
     contenedor.innerHTML = htmlContent;
   });
 });
