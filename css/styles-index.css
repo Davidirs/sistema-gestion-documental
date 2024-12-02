@@ -113,6 +113,14 @@
     background-color: transparent !important;
 }
 
+.nav-link:hover {
+    color: #007bff;
+    text-decoration: underline;
+    background-color: #bedaff;
+    border-radius: 3px;
+    transform: scale(1.05);
+}
+
 .navbar.sticky-top {
     position: fixed;
     top: 0;
