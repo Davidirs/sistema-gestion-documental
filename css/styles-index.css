@@ -130,8 +130,21 @@
 }
 
 .card{
+    background-color: #ffffff;
+    box-shadow: 0 4px 6px rgba(190, 218, 255, 0.1);
+    border-radius: 40px !important;
+    padding: 2rem;
+    transition: all 0.3s ease;
+  }
+
+  .card:hover {
+    transform: scale(1.05);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+  }
+
+/* .card{
     border: none !important;
-}
+} */
 
 .gallery {
     --n: 1; /* number of rows*/
