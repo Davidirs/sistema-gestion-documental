@@ -135,16 +135,24 @@
     border-radius: 40px !important;
     padding: 2rem;
     transition: all 0.3s ease;
-  }
+}
 
-  .card:hover {
+.card:hover {
     transform: scale(1.05);
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
-  }
+}
+
+.card-title {
+    color: var(--primary-color);
+}
 
 /* .card{
     border: none !important;
 } */
+
+.bg-light {
+    background-color: #f8f9fa !important;
+  }
 
 .gallery {
     --n: 1; 
@@ -260,7 +268,6 @@ list-style{
    
    
 }
-
 
 .logo-header{
     height: 80px;
