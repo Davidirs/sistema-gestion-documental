@@ -71,18 +71,27 @@ import globalDirective from './plugins/global-directive';
 import globalMixin from './plugins/global-mixin';
 
 
-const vueApp = createApp(App);
+import { auth, onAuthStateChanged } from "@/firebase";
 
-vueApp
-  .use(store)
-  .use(router)
-  .use(VueSweetalert2)
-  .use(VueApexCharts)
-  .use(BootstrapVue3)
-  .component('counter-up', CounterUp)
-  .use(globalComponent)
-  .use(globalDirective)
-  .mixin(globalMixin)
-  .mount('#app');
+let vueApp;
+
+onAuthStateChanged(auth, (user) => {
+
+  console.log('user:',user);
+  
+  if (!vueApp) {
+    vueApp = createApp(App)
+      .use(store)
+      .use(router)
+      .use(VueSweetalert2)
+      .use(VueApexCharts)
+      .use(BootstrapVue3)
+      .component('counter-up', CounterUp)
+      .use(globalComponent)
+      .use(globalDirective)
+      .mixin(globalMixin)
+      .mount('#app');
+  }
+});
 
 export default vueApp;

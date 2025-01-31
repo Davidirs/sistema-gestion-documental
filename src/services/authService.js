@@ -1,5 +1,5 @@
 
-import { auth } from '@/firebase'
+import { auth,signOut } from '@/firebase'
 import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from "firebase/auth";
 
 
@@ -36,7 +36,10 @@ export default {
       });
     return userCredential;
   },
-  /*async signOut() {
+  async signOut() {
+    console.log('signOut');
+    
+    signOut(auth)
     // ...
-  } */
+  }
 };

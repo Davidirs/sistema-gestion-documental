@@ -1,5 +1,5 @@
 import { createRouter, createWebHistory } from 'vue-router'
-
+import { auth } from "@/firebase";
 // Design System Routes
 const designSystemChildRoutes = (prefix) => [
   {
@@ -48,7 +48,7 @@ const dashboardRoutes = (prefix) => [
   {
     path: '',
     name: prefix + '.dashboard',
-    meta: { auth: true, name: 'Home', isBanner: false },
+    meta: { auth: true, name: 'Home', isBanner: false, requiresAuth: true },
     component: () => import('@/views/dashboards/IndexPage.vue')
   }
 ]
@@ -57,7 +57,7 @@ const defaultChildRoutes = (prefix) => [
   {
     path: '',
     name: prefix + '.dashboard',
-    meta: { auth: true, name: 'Home', isBanner: true },
+    meta: { auth: true, name: 'Home', isBanner: true, requiresAuth: true },
     component: () => import('@/views/dashboards/IndexPage.vue')
   },
   // Spacial Pages
@@ -101,21 +101,21 @@ const defaultChildRoutes = (prefix) => [
   {
     path: '/departamentos',
     name: prefix + '.departamentos',
-    meta: { auth: true, name: 'Direcciones', isBanner: true },
+    meta: { auth: true, name: 'Direcciones', isBanner: true, requiresAuth: true },
     component: () => import('@/views/department/ListDepartment.vue')
   },
   // Employee Pages
   {
     path: '/empleados',
     name: prefix + '.empleados',
-    meta: { auth: true, name: 'Employees', isBanner: true },
+    meta: { auth: true, name: 'Employees', isBanner: true, requiresAuth: true },
     component: () => import('@/views/employee/ListEmployee.vue')
   },
   // Document Pages
   {
     path: '/documentos',
     name: prefix + '.documentos',
-    meta: { auth: true, name: 'Documentos', isBanner: true },
+    meta: { auth: true, name: 'Documentos', isBanner: true, requiresAuth: true },
     component: () => import('@/views/document/ListDocument.vue')
   },
   // Users Pages
@@ -408,5 +408,19 @@ const router = createRouter({
   base: process.env.BASE_URL,
   routes
 })
+
+// Guard de autenticación
+router.beforeEach((to, from, next) => {
+  const user = auth.currentUser; // Obtener usuario autenticado
+  const requiresAuth = to.matched.some(record => record.meta.requiresAuth);
+
+  if (requiresAuth && !user) {
+    console.log('no autenticado, por favor autenticar');
+
+    next("/auth/login"); // Si no está autenticado, lo mandamos a login
+  } else {
+    next(); // Si está autenticado o la ruta no requiere autenticación, lo dejamos pasar
+  }
+});
 
 export default router
