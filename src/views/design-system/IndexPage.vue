@@ -19,7 +19,7 @@
         
       </b-container>
     </div>
-        <img src="@/assets/img/alcalde.png" alt="" width="400" class="alcalde">
+        <img src="@/assets/img/alcalde.png" alt="" width="400" class="alcalde d-none d-md-block">
     <b-container>
       <nav class="nav navbar navbar-expand-lg navbar-light top-1 rounded">
         <b-container fluid>
@@ -37,9 +37,9 @@
               <li class="nav-item me-3 d-none d-md-block">
                 <a class="nav-link" aria-current="page" href="#historia">Historia</a>
               </li>
-              <li class="nav-item me-3  d-none d-md-block">
+              <!-- <li class="nav-item me-3  d-none d-md-block">
                 <a class="nav-link" aria-current="page" href="#noticias">Noticias</a>
-              </li>
+              </li> -->
               <li class="nav-item me-3">
               
                 <router-link to="consulta" class="btn btn-secondary d-flex align-items-center gap-2" aria-current="page">Consultar</router-link>
@@ -79,7 +79,7 @@
 
             <div class="d-flex justify-content-start align-items-center mb-3">
               <div class="pe-3">
-                <img src="@/assets/images/avatars/02.png" class="rounded-circle p-1 bg-soft-danger" width="60"
+                <img src="@/assets/img/logo250.png" class="rounded-circle p-1 bg-soft-danger" width="60"
                   height="60" alt="1" loading="lazy" />
               </div>
               <div>
@@ -97,7 +97,7 @@
           <b-card>
             <div class="d-flex justify-content-start align-items-center mb-3">
               <div class="pe-3">
-                <img src="@/assets/images/avatars/02.png" class="rounded-circle p-1 bg-soft-danger" width="60"
+                <img src="@/assets/img/logo250.png" class="rounded-circle p-1 bg-soft-danger" width="60"
                   height="60" alt="1" loading="lazy" />
               </div>
               <div>
@@ -115,7 +115,7 @@
           <b-card>
             <div class="d-flex justify-content-start align-items-center mb-3">
               <div class="pe-3">
-                <img src="@/assets/images/avatars/02.png" class="rounded-circle p-1 bg-soft-danger" width="60"
+                <img src="@/assets/img/logo250.png" class="rounded-circle p-1 bg-soft-danger" width="60"
                   height="60" alt="1" loading="lazy" />
               </div>
               <div>
@@ -169,30 +169,30 @@
   <div class="inner-box bg-secondary">
     <div class="container">
       <div class="row row-cols-1 row-cols-sm-2 row-cols-md-5 align-items-center">
-        <div class="col mb-lg-0 mb-5 d-flex justify-content-center align-items-center">
-          <p>Departamento</p>
-          <ClientWidget :clientImage="require('@/assets/modules/landing-pages/images/home-1/07.png')" />
+        <div class="col mb-lg-0 mb-5 d-flex justify-content-center align-items-center rounded">
+          
+          <ClientWidget :clientImage="require('@/assets/img/administracion-y-finanzas.png')" />
         </div>
-        <div class="col mb-lg-0 mb-5 d-flex justify-content-center">
-          <p>Departamento</p>
-          <ClientWidget :clientImage="require('@/assets/modules/landing-pages/images/home-1/08.png')" />
+        <div class="col mb-lg-0 mb-5 d-flex justify-content-center rounded">
+          
+          <ClientWidget :clientImage="require('@/assets/img/Auditoria-Interna.png')" />
         </div>
-        <div class="col mb-lg-0 mb-5 d-flex justify-content-center">
-          <p>Departamento</p>
-          <ClientWidget :clientImage="require('@/assets/modules/landing-pages/images/home-1/09.png')" />
+        <div class="col mb-lg-0 mb-5 d-flex justify-content-center rounded">
+          
+          <ClientWidget :clientImage="require('@/assets/img/Hacienda-Municipal.png')" />
         </div>
-        <div class="col mb-lg-0 mb-5 d-flex justify-content-center">
-          <p>Departamento</p>
-          <ClientWidget :clientImage="require('@/assets/modules/landing-pages/images/home-1/10.png')" />
+        <div class="col mb-lg-0 mb-5 d-flex justify-content-center rounded">
+          
+          <ClientWidget :clientImage="require('@/assets/img/Recursos-humanos.png')" />
         </div>
-        <div class="col mb-lg-0 mb-5 d-flex justify-content-center">
-          <p>Departamento</p>
-          <ClientWidget :clientImage="require('@/assets/modules/landing-pages/images/home-1/11.png')" />
+        <div class="col mb-lg-0 mb-5 d-flex justify-content-center rounded" >
+          
+          <ClientWidget :clientImage="require('@/assets/img/general.png')" />
         </div>
       </div>
     </div>
   </div>
-  <div class="section-card-padding bg-white" id="noticias">
+  <!-- <div class="section-card-padding bg-white" id="noticias">
     <div class="container">
       <div class="row align-items-center">
         <div class="col-md-12 text-center">
@@ -242,7 +242,7 @@
         </div>
       </div>
     </div>
-  </div>
+  </div> -->
 
   <FooterComponent />
 
@@ -274,23 +274,23 @@ import { computed, ref } from 'vue'
 import { useStore } from 'vuex'
 
 //swiper
-import { Swiper, SwiperSlide } from 'swiper/vue'
+//import { Swiper, SwiperSlide } from 'swiper/vue'
 import { Navigation } from 'swiper'
 
 //components
 import FooterComponent from '@/components/modules/landing-pages/FooterComponent.vue'
 import TeamWidgetVue from '@/components/widgets/TeamWidget.vue'
 import ClientWidget from '@/components/widgets/ClientWidget.vue'
-import BlogWidget from '@/components/widgets/BlogWidget.vue'
+//import BlogWidget from '@/components/widgets/BlogWidget.vue'
 
 export default {
   components: {
     FooterComponent,
     TeamWidgetVue,
     ClientWidget,
-    BlogWidget,
+   /*  BlogWidget,
     Swiper,
-    SwiperSlide
+    SwiperSlide */
   },
   setup() {
     const store = useStore()

@@ -3,7 +3,7 @@ class Employee {
         this.uid = data.uid;
         //this.image = data.image;
         this.name = data.name;
-        this.ci = data.ci;
+        //this.ci = data.ci;
         this.department = data.department;
         this.position = data.position||null;
         this.entrydate = data.entrydate||null;
@@ -14,7 +14,7 @@ class Employee {
       this.uid = json['uid'];
       //this.image = json['image'];
       this.name = json['name'];
-      this.ci = json['ci'];
+      //this.ci = json['ci'];
       this.department = json['department'];
       this.position = json['position'];
       this.entrydate = json['entrydate'];
@@ -26,7 +26,7 @@ class Employee {
       data['uid'] = this.uid;
       //data['image'] = this.image;
       data['name'] = this.name;
-      data['ci'] = this.ci;
+      //data['ci'] = this.ci;
       data['department'] = this.department;
       data['position'] = this.position;
       data['entrydate'] = this.entrydate;

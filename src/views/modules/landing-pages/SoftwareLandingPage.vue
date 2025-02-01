@@ -172,7 +172,7 @@
               <h6 class="mb-3">Free</h6>
               <h4 class="">
                 $0 <br />
-                <h6>/Month</h6>
+                <span>/Month</span>
               </h4>
               <router-link to="#" class="btn btn-primary mt-3">Get Started</router-link>
             </div>
@@ -229,7 +229,7 @@
             <div class="card-header bg-soft-primary pb-4">
               <h6 class="mb-3">Premium</h6>
               <h4 class="">
-                5399<br />
+                5399<br/>
                 <h6>/Month</h6>
               </h4>
               <router-link to="#" class="btn btn-primary mt-3">Get Started</router-link>

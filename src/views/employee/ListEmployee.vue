@@ -32,9 +32,9 @@
                   <td>{{ index + 1 }}
                   </td>
                   <td class="text-center"><img class="bg-soft-primary rounded img-fluid avatar-40 me-3"
-                      :src="require('@/assets/images/shapes/03.png')" alt="profile" loading="lazy" /></td>
+                      :src="require('@/assets/images/avatars/01.png')" alt="profile" loading="lazy" /></td>
                   <td>{{ item.name }}</td>
-                  <td>{{ item.ci }}</td>
+                  <td>{{ item.uid }}</td>
                   <td>{{ item.department }}</td>
                   <td>{{ item.position }}</td>
                   <td>{{ item.entrydate }}</td>
@@ -237,9 +237,8 @@ export default {
       console.log('entrydate:', this.entrydate);
       console.log('fileslocation:', this.fileslocation);
       let employee = new Employee({
-        uid: 'uid',
+        uid: String(this.ci),
         name: this.name,
-        ci: this.ci,
         department: this.department,
         position: this.position,
         entrydate: this.entrydate,

@@ -20,7 +20,7 @@
             <h5 class="logo-title">Alcaldía Cruz Paredez</h5>
           </router-link>
         </div>
-        <ul class="d-block d-xl-none list-unstyled m-0">
+        <!-- <ul class="d-block d-xl-none list-unstyled m-0">
           <li class="nav-item dropdown iq-responsive-menu">
             <div class="btn btn-sm bg-body" id="navbarDropdown-search-11" role="button" data-bs-toggle="dropdown" aria-expanded="false">
               <svg class="icon-20" width="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -42,7 +42,7 @@
               </li>
             </ul>
           </li>
-        </ul>
+        </ul> -->
         <HorizontalNav />
         <router-link to="/landing-page" class="active exact-active navbar-brand m-0 d-xl-flex d-none">
           <!--Logo start-->

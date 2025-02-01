@@ -19,8 +19,6 @@ export default {
   },
 
   //Direcciones
-
-
   async getDepartments() {
     const departments = [];
     const querySnapshot = await getDocs(collection(db, "departments"));
@@ -75,13 +73,32 @@ export default {
     });
     return employees;
   },
+  async  getEmployeeByCI(ci) {
+    // Referencia al documento con el CI como UID
+    const employeeRef = doc(db, "employees", ci);
+  
+    // Obtener el documento
+    const employeeSnap = await getDoc(employeeRef);
+  
+    // Verificar si el documento existe
+    if (!employeeSnap.exists()) {
+      console.log("No se encontró ningún empleado con esa cédula.");
+      return null;
+    }
+  
+    // Retornar los datos del empleado
+    return employeeSnap.data();
+  },
+  
   async addEmployee(employee) {
     // Create a new document reference with a generated ID
-    const newDepRef = doc(collection(db, "employees"));
+    //const newDepRef = doc(collection(db, "employees"));
+    const newDepRef = doc(db, "employees", employee.uid);
     // Assign the generated ID to the employee object's uid property
-    employee.uid = newDepRef.id;
+    //employee.uid = newDepRef.id;
     // Set the document with the updated employee object (including uid)
     await setDoc(newDepRef, employee);
+
     return newDepRef; // Return the document reference for potential future use
 
   },
@@ -155,12 +172,12 @@ export default {
         docs: arrayUnion(document) // Agrega el nuevo documento al array
       });
       console.log("Document added to array successfully!");
-            documentCreated = true;
+      documentCreated = true;
     } catch (error) {
       console.error("Error adding document to array:", error);
       throw error; // Re-lanza el error para que se pueda manejar
     }
-        return documentCreated;
+    return documentCreated;
   },
 
 

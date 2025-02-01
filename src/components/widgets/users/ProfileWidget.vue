@@ -2,47 +2,49 @@
   <b-card no-body>
     <b-card-header>
       <div class="header-title">
-        <h4 class="card-title">Profile</h4>
+        <h4 class="card-title">Empleado</h4>
       </div>
     </b-card-header>
     <b-card-body>
-      <div class="text-center">
+      <div class="text-center d-flex justify-content-center align-items-center">
         <div>
-          <img src="@/assets/images/avatars/01.png" alt="profile-img" class="rounded-pill avatar-130 img-fluid" loading="lazy" />
+          <img src="@/assets/images/avatars/01.png" alt="profile-img" class="rounded-pill avatar-80 img-fluid" loading="lazy" />
         </div>
-        <div class="mt-3">
-          <h3 class="d-inline-block">{{ name }}</h3>
-          <p class="d-inline-block pl-3">- Web developer</p>
-          <p class="mb-0">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s</p>
-        </div>
+        <div class="mt-2">
+          <h4 class="d-inline-block">{{ name }}</h4>
+          <h5 class="d-inline-block pl-3">{{uid}}</h5>
+          </div>
       </div>
     </b-card-body>
   </b-card>
-  <b-card>
+  <b-card  no-body>
     <b-card-header>
       <div class="header-title">
-        <h4 class="card-title">About User</h4>
+        <h4 class="card-title">Acerca de</h4>
       </div>
     </b-card-header>
     <b-card-body>
       <div class="user-bio">
-        <p>Tart I love sugar plum I love oat cake. Sweet roll caramels I love jujubes. Topping cake wafer.</p>
       </div>
-      <div class="mt-2">
-        <h6 class="mb-1">Joined:</h6>
-        <p>{{ date }}</p>
+      <div class="mt-1">
+        <h6>Dirección:</h6>
+        <p>{{ department }}</p>
       </div>
-      <div class="mt-2">
-        <h6 class="mb-1">Lives:</h6>
-        <p>{{ location }}</p>
+      <div class="mt-1">
+        <h6>Fecha de entrada:</h6>
+        <p>{{ entrydate }}</p>
       </div>
-      <div class="mt-2">
-        <h6 class="mb-1">Email:</h6>
+      <div class="mt-1">
+        <h6>Cargo:</h6>
+        <p>{{ position }}</p>
+      </div>
+      <div class="mt-1">
+        <h6>Ubicación de expedientes:</h6>
         <p>
-          <a href="#" class="text-body"> {{ email }}</a>
+          <a href="#" class="text-body"> {{ fileslocation }}</a>
         </p>
       </div>
-      <div class="mt-2">
+      <!-- <div class="mt-2">
         <h6 class="mb-1">Url:</h6>
         <p>
           <a href="#" class="text-body" target="_blank"> {{ url }} </a>
@@ -53,19 +55,19 @@
         <p>
           <a href="#" class="text-body">{{ number }}</a>
         </p>
-      </div>
+      </div> -->
     </b-card-body>
   </b-card>
 </template>
 <script>
 export default {
   props: {
+    uid: { type: String, required: true },
     name: { type: String, required: true },
-    date: { type: String, required: true },
-    location: { type: String, required: true },
-    email: { type: String, required: true },
-    url: { type: String, required: true },
-    number: { type: String, required: true }
+    department: { type: String, required: true },
+    position: { type: String, required: true },
+    entrydate: { type: String, required: true },
+    fileslocation: { type: String, required: true }
   }
 }
 </script>

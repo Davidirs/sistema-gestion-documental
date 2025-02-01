@@ -28,8 +28,8 @@
     </router-link>
   </div>
   <div class="btn-download">
-    <router-link class="btn btn-fixed-end btn-primary btn-icon btn-landing" :to="{ name: '/' }"> Página principal </router-link>
-  </div>
+    <!-- <router-link class="btn btn-fixed-end btn-primary btn-icon btn-landing" :to="{ name: '/' }"> Página principal </router-link>
+   --></div>
 </template>
 
 <script setup>

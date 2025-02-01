@@ -7,7 +7,14 @@ const designSystemChildRoutes = (prefix) => [
     name: prefix + '.main',
     meta: { auth: true, name: 'Design System' },
     component: () => import('@/views/design-system/IndexPage.vue')
-  }
+  },/* 
+  
+  {
+    path: '/consulta',
+    name: prefix + 'consulta',
+    meta: { auth: true, name: 'Consulta', isBanner: true, header: 'header_one', footer: 'footer' },
+    component: () => import('@/views/modules/landing-pages/ConsultPage.vue')
+  } */
 ]
 // Auth Default Routes
 const authChildRoutes = (prefix) => [
@@ -40,6 +47,13 @@ const authChildRoutes = (prefix) => [
     name: prefix + '.lock-screen',
     meta: { auth: false, name: 'Lock Screen' },
     component: () => import('@/views/auth/default/LockScreen.vue')
+  },
+  
+  {
+    path: 'consulta',
+    name: prefix + 'consulta',
+    meta: { auth: true, name: 'Consulta', isBanner: true, header: 'header_one', footer: 'footer' },
+    component: () => import('@/views/modules/landing-pages/ConsultPage.vue')
   }
 ]
 
@@ -334,17 +348,17 @@ const landingPageRoutes = (prefix) => [
 
 const routes = [
   {
-    path: '/',
+    path: '',
     name: 'design-system',
     component: () => import('../layouts/guest/BlankLayout.vue'),
     children: designSystemChildRoutes('design-system')
   },
   //landing pages
   {
-    path: '/landing-page',
-    name: 'landing-page',
+    path: '/interes',
+    name: 'interes',
     component: () => import('../layouts/LandingPageLayout.vue'),
-    children: landingPageRoutes('landing-page')
+    children: landingPageRoutes('interes')
   },
   // Default Pages
   {
@@ -415,12 +429,15 @@ router.beforeEach((to, from, next) => {
   const requiresAuth = to.matched.some(record => record.meta.requiresAuth);
 
   if (requiresAuth && !user) {
-    console.log('no autenticado, por favor autenticar');
-
+    console.log('No autenticado, redirigiendo a login');
     next("/auth/login"); // Si no está autenticado, lo mandamos a login
+  } else if (user && to.path === "/auth/login") {
+    console.log('Ya autenticado, redirigiendo a dashboard');
+    next("/dashboard"); // Si ya está autenticado y va a login, lo mandamos a dashboard
   } else {
-    next(); // Si está autenticado o la ruta no requiere autenticación, lo dejamos pasar
+    next(); // En cualquier otro caso, dejamos que continúe
   }
 });
+
 
 export default router
