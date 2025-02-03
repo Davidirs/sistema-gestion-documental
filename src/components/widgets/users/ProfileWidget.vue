@@ -10,7 +10,7 @@
         <div>
           <img src="@/assets/images/avatars/01.png" alt="profile-img" class="rounded-pill avatar-80 img-fluid" loading="lazy" />
         </div>
-        <div class="mt-2">
+        <div class="mt-2 d-flex flex-column">
           <h4 class="d-inline-block">{{ name }}</h4>
           <h5 class="d-inline-block pl-3">{{uid}}</h5>
           </div>

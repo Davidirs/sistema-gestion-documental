@@ -15,7 +15,7 @@
                 <path d="M16 6V22" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
                 <path d="M8 2V18" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
               </svg>
-              <p class="ms-4 mb-0 text-white">Av. Sucre cruce con calle Andrés Eloy Blanco Frente a la plaza Bolivar, Barrancas., Barinas.</p>
+              <p class="ms-4 mb-0 text-white">Av. Sucre, cruce con calle Andrés Eloy Blanco Frente a la plaza Bolivar, Barrancas, Barinas.</p>
             </div>
             <div class="d-flex align-items-center">
               <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -34,6 +34,9 @@
               </li>
               <li class="mb-3" i>
                 <router-link to="consulta" class="my-3 h6 text-white">Consultar</router-link>
+              </li>
+              <li class="mb-3" i>
+                <router-link to="/contactanos" class="my-3 h6 text-white">Contáctanos</router-link>
               </li>
               <!-- 
               <li class="mb-3">Características</li>
@@ -89,7 +92,7 @@
       <div class="container border-top py-4 border-primary">
         <div class="row">
           <div class="col-md-12 text-center text-white">
-            <p class="mb-0">© {{ date }} Alcaldía Cruz Paredez, All Rights Reserved.</p>
+            <p class="mb-0">© {{ date }} Alcaldía Cruz Paredes, All Rights Reserved.</p>
           </div>
         </div>
       </div>

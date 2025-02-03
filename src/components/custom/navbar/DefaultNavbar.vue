@@ -3,12 +3,12 @@
     <!-- <nav :class="`nav navbar navbar-expand-xl navbar-light iq-navbar ${headerNavbar} ${navbarHide.join('')}`"> -->
     <div class="container-fluid navbar-inner">
       <slot></slot>
-      <div class="input-group search-input" v-if="isSearch">
+      <!-- <div class="input-group search-input" v-if="isSearch">
         <span class="input-group-text" id="search-input">
           <icon-component type="outlined" :size="18" icon-name="search"></icon-component>
         </span>
         <input type="search" class="form-control" placeholder="Buscar..." />
-      </div>
+      </div> -->
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
         aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon">
@@ -193,7 +193,7 @@
               </b-card>
             </div>
           </li> -->
-          <li class="nav-item dropdown">
+          <li class="me-0 me-xl-2">
             <a class="nav-link py-0 d-flex align-items-center" href="#" id="navbarDropdown" role="button"
               data-bs-toggle="dropdown" aria-expanded="false">
               <img src="@/assets/images/avatars/01.png" alt="User-Profile"
@@ -214,12 +214,12 @@
               </div>
             </a>
             <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-              <li><router-link class="dropdown-item" :to="{ name: 'default.user-profile' }">Perfil</router-link></li>
+              <!-- <li><router-link class="dropdown-item" :to="{ name: 'default.user-profile' }">Perfil</router-link></li>
               <li><router-link class="dropdown-item" :to="{ name: 'default.user-privacy-setting' }">Privacy
                   Setting</router-link></li>
               <li>
                 <hr class="dropdown-divider" />
-              </li>
+              </li> -->
               <li><button class="dropdown-item" @click="logout">Cerrar sesión</button></li>
             </ul>
           </li>

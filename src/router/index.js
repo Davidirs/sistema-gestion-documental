@@ -309,9 +309,9 @@ const landingPageRoutes = (prefix) => [
     component: () => import('@/views/modules/landing-pages/BlogDetail')
   },
   {
-    path: '/contact-us',
-    name: prefix + 'contact-us',
-    meta: { auth: true, name: 'Contact Us', isBanner: true, header: 'header_one', footer: 'footer' },
+    path: '/contactanos',
+    name: prefix + 'contactanos',
+    meta: { auth: true, name: 'Contáctanos', isBanner: true, header: 'header_one', footer: 'footer' },
     component: () => import('@/views/modules/landing-pages/ContactUs')
   },
   {

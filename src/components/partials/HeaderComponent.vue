@@ -2,7 +2,7 @@
   <default-navbar :isGoPro="true" :isSearch="true">
     <a href="#" class="navbar-brand">
       <brand-logo :color="true" />
-      <h4 class="logo-title d-block d-xl-none" data-setting="app_name"><brand-name></brand-name></h4>
+      <small class="logo-title d-block d-xl-none" data-setting="app_name"><brand-name></brand-name></small>
     </a>
     <div class="sidebar-toggle" data-toggle="sidebar" data-active="true" @click="toggleSidebar">
       <i class="icon d-flex">

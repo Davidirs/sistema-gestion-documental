@@ -87,9 +87,9 @@
               </div>
             </div>
             <div>
-              <small> por la descentralización Nacional aprobada por
+              <p> por la descentralización Nacional aprobada por
                 modificación de la Ley Orgánica del Poder Público Municipal, donde se aprueba
-                la figura de Alcalde como autoridad Administrativa.</small>
+                la figura de Alcalde como autoridad Administrativa.</p>
             </div>
           </b-card>
         </b-col>
@@ -106,8 +106,8 @@
             </div>
             
             <div>
-              <small>se realizaron las primeras elecciones de Alcalde y demás autoridades Municipales en gran
-                parte del País para un periodo de 4 años..</small>
+              <p>se realizaron las primeras elecciones de Alcalde y demás autoridades Municipales en gran
+                parte del País para un periodo de 4 años..</p>
             </div>
           </b-card>
         </b-col>
@@ -123,9 +123,9 @@
               </div>
             </div>
             <div>
-              <small>Para la presente fecha, la Alcaldía está bajo el cargo del Doctor Henry Maldonado Paredes como
+              <p>Para la presente fecha, la Alcaldía está bajo el cargo del Doctor Henry Maldonado Paredes como
                 máxima
-                autoridad del Municipio Cruz Paredes.</small>
+                autoridad del Municipio Cruz Paredes.</p>
             </div>
           </b-card>
         </b-col>
@@ -169,25 +169,21 @@
   <div class="inner-box bg-secondary">
     <div class="container">
       <div class="row row-cols-1 row-cols-sm-2 row-cols-md-5 align-items-center">
-        <div class="col mb-lg-0 mb-5 d-flex justify-content-center align-items-center rounded">
-          
-          <ClientWidget :clientImage="require('@/assets/img/administracion-y-finanzas.png')" />
+
+        <div class="col mb-lg-0 mb-5 d-flex justify-content-center rounded" >
+          <ClientWidget :clientImage="require('@/assets/img/general.png')" />
         </div>
         <div class="col mb-lg-0 mb-5 d-flex justify-content-center rounded">
-          
-          <ClientWidget :clientImage="require('@/assets/img/Auditoria-Interna.png')" />
+          <ClientWidget :clientImage="require('@/assets/img/Recursos-humanos.png')" />
         </div>
         <div class="col mb-lg-0 mb-5 d-flex justify-content-center rounded">
-          
           <ClientWidget :clientImage="require('@/assets/img/Hacienda-Municipal.png')" />
         </div>
         <div class="col mb-lg-0 mb-5 d-flex justify-content-center rounded">
-          
-          <ClientWidget :clientImage="require('@/assets/img/Recursos-humanos.png')" />
+          <ClientWidget :clientImage="require('@/assets/img/Auditoria-Interna.png')" />
         </div>
-        <div class="col mb-lg-0 mb-5 d-flex justify-content-center rounded" >
-          
-          <ClientWidget :clientImage="require('@/assets/img/general.png')" />
+        <div class="col mb-lg-0 mb-5 d-flex justify-content-center align-items-center rounded">
+          <ClientWidget :clientImage="require('@/assets/img/administracion-y-finanzas.png')" />
         </div>
       </div>
     </div>

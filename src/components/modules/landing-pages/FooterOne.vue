@@ -54,7 +54,7 @@
         </div>
         <hr />
         <div class="col-md-12 text-center">
-          <p>© {{ date }} Alcaldía Cruz Paredez, All Rights Reserved.</p>
+          <p>© {{ date }} Alcaldía Cruz Paredes, All Rights Reserved.</p>
         </div>
       </div>
     </div>

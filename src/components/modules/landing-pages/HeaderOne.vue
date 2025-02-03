@@ -17,7 +17,7 @@
               <rect x="10.5562" y="-0.556152" width="28" height="4" rx="2" transform="rotate(45 10.5562 -0.556152)" fill="currentColor"></rect>
             </svg>
             <!--logo End-->
-            <h5 class="logo-title">Alcaldía Cruz Paredez</h5>
+            <h5 class="logo-title">Alcaldía Cruz Paredes</h5>
           </router-link>
         </div>
         <!-- <ul class="d-block d-xl-none list-unstyled m-0">
@@ -53,13 +53,13 @@
             <rect x="10.5562" y="-0.556152" width="28" height="4" rx="2" transform="rotate(45 10.5562 -0.556152)" fill="currentColor"></rect>
           </svg>
           <!--logo End-->
-          <h5 class="logo-title">Alcaldía Cruz Paredez</h5>
+          <h5 class="logo-title">Alcaldía Cruz Paredes</h5>
         </router-link>
         <ul class="navbar-nav align-items-center navbar-list d-none d-xl-flex">
           <!--<li class="nav-item"><router-link class="nav-link" active-class="active" to="/blogs">Blog</router-link></li>
            <li class="nav-item"><router-link class="nav-link" active-class="active" to="/shop"> Shop</router-link></li> 
           <li class="nav-item"><router-link class="nav-link" active-class="active" to="/faq">Faq</router-link></li>-->
-          <li class="nav-item"><router-link class="nav-link" active-class="active" to="/contact-us">Contáctanos</router-link></li>
+          <li class="nav-item"><router-link class="nav-link" active-class="active" to="/contactanos">Contáctanos</router-link></li>
         </ul>
       </div>
     </div>

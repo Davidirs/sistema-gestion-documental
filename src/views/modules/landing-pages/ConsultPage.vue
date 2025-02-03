@@ -1,7 +1,7 @@
 <template>
   <section class="login-content">
-    <b-row class="m-0 align-items-center bg-white">
-      <b-col md="6 p-0 vh-100 d-flex justify-content-center align-items-center">
+    <b-row class="m-0 align-items-center bg-white border-bottom">
+      <b-col md="6 p-0 vh-100 d-flex justify-content-center align-items-center bg-secondary">
         <b-card class="card-transparent auth-card shadow-none mb-0">
           <router-link :to="{ name: 'default.dashboard' }"
             class="navbar-brand d-flex align-items-center mb-3 text-primary">
@@ -44,10 +44,16 @@
           </svg>
         </div>
       </b-col>
-      <div :class="{'d-none d-md-block': !employee}"  class="col-md-6 bg-ondas p-0 vh-100" :style="{ backgroundImage: `url(${require('@/assets/images/auth/04.png')})` }" >
+      <div :class="{'d-none d-md-block': !employee}"  class="col-md-6 bg-ondas p-0 vh-100 overflow-auto" :style="{ backgroundImage: `url(${require('@/assets/images/auth/04.png')})` }" >
         <div v-if="employee" class="rounded p-3">
-          <profile-widget name="Austin Robertson" uid="Feb 15, 2021" position="United States of America"
-          entrydate="austin@gmail.com" fileslocation="www.bootstrap.com" department="(001) 4544 565 456" />
+          <profile-widget
+    :name="employee.name"
+    :uid="employee.uid"
+    :position="employee.position"
+    :entrydate="employee.entrydate"
+    :fileslocation="employee.fileslocation"
+    :department="employee.department"
+  />
         </div>
 
         <!-- <img src="@/assets/images/auth/04.png" class="img-fluid gradient-main animated-scaleX" alt="images"
