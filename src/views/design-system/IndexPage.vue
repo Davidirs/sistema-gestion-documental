@@ -4,28 +4,34 @@
     :style="`background: url(${require('@/assets/images/dashboard/top-image.jpg')}); background-size: cover; background-repeat: no-repeat; height: 100vh;position: relative;`">
     <div class="main-img">
       <b-container>
-      <div class="d-flex  justify-content-center align-items-center">
+        <div class="d-flex  justify-content-center align-items-center">
 
-        
-        <img src="@/assets/img/logo250.png" alt="" width="200"
-          class="d-flex  justify-content-lg-end justify-content-sm-center logo-central">
-      </div>
-        <h1 class="my-4 d-none d-md-block">
-          <span>{{ appName }}</span>
-        </h1>
-        <h4 class="text-white mb-5">"Todos los Derechos, <br>
-          <b> Para todas las personas</b>"
-        </h4>
-        
+
+          <img src="@/assets/img/logo250.png" alt="" width="200"
+            class="d-flex  justify-content-lg-end justify-content-sm-center logo-central">
+        </div>
+        <div class="col-md-8">
+
+
+          <h1 class="my-4 d-none d-md-block">
+            <span>{{ appName }}</span>
+          </h1>
+          <h4 class="text-white mb-5">"Todos los Derechos, <br>
+            <b> Para todas las personas</b>"
+          </h4>
+
+        </div>
       </b-container>
     </div>
-        <img src="@/assets/img/alcalde.png" alt="" width="400" class="alcalde d-none d-md-block">
+    <div class="col-4">
+      <img src="@/assets/img/alcalde.png" alt="" width="400" class="alcalde d-none d-md-block">
+    </div>
     <b-container>
       <nav class="nav navbar navbar-expand-lg navbar-light top-1 rounded">
         <b-container fluid>
           <a class="navbar-brand mx-2" href="#">
-            
-        <img src="@/assets/img/logo250.png" alt="" width="75">
+
+            <img src="@/assets/img/logo250.png" alt="" width="75">
             <h5 class="logo-title d-none d-md-block">{{ appName }}</h5>
           </a>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar-2"
@@ -41,15 +47,16 @@
                 <a class="nav-link" aria-current="page" href="#noticias">Noticias</a>
               </li> -->
               <li class="nav-item me-3">
-              
-                <router-link to="consulta" class="btn btn-secondary d-flex align-items-center gap-2" aria-current="page">Consultar</router-link>
-                
+
+                <router-link to="consulta" class="btn btn-secondary d-flex align-items-center gap-2"
+                  aria-current="page">Consultar</router-link>
+
               </li>
             </ul>
           </div>
         </b-container>
       </nav>
-      
+
     </b-container>
   </div>
 
@@ -79,17 +86,17 @@
 
             <div class="d-flex justify-content-start align-items-center mb-3">
               <div class="pe-3">
-                <img src="@/assets/img/logo250.png" class="rounded-circle p-1 bg-soft-danger" width="60"
-                  height="60" alt="1" loading="lazy" />
+                <img src="@/assets/img/logo250.png" class="rounded-circle p-1 bg-soft-danger" width="60" height="60"
+                  alt="1" loading="lazy" />
               </div>
               <div>
-                <h5>Las Alcaldías se crean</h5>
+                <h5>Las Alcaldías </h5>
               </div>
             </div>
             <div>
-              <p> por la descentralización Nacional aprobada por
+              <p>se crean por la descentralización Nacional aprobada por
                 modificación de la Ley Orgánica del Poder Público Municipal, donde se aprueba
-                la figura de Alcalde como autoridad Administrativa.</p>
+                la figura</p>
             </div>
           </b-card>
         </b-col>
@@ -97,17 +104,17 @@
           <b-card>
             <div class="d-flex justify-content-start align-items-center mb-3">
               <div class="pe-3">
-                <img src="@/assets/img/logo250.png" class="rounded-circle p-1 bg-soft-danger" width="60"
-                  height="60" alt="1" loading="lazy" />
+                <img src="@/assets/img/logo250.png" class="rounded-circle p-1 bg-soft-danger" width="60" height="60"
+                  alt="1" loading="lazy" />
               </div>
               <div>
-                <h5>En 1988</h5>
+                <h5> de Alcalde</h5>
               </div>
             </div>
-            
+
             <div>
-              <p>se realizaron las primeras elecciones de Alcalde y demás autoridades Municipales en gran
-                parte del País para un periodo de 4 años..</p>
+              <p> como autoridad Administrativa. En 1988 se realizaron las primeras elecciones de Alcalde y demás autoridades Municipales en gran
+                parte del País para un periodo de 4 años.</p>
             </div>
           </b-card>
         </b-col>
@@ -115,15 +122,15 @@
           <b-card>
             <div class="d-flex justify-content-start align-items-center mb-3">
               <div class="pe-3">
-                <img src="@/assets/img/logo250.png" class="rounded-circle p-1 bg-soft-danger" width="60"
-                  height="60" alt="1" loading="lazy" />
+                <img src="@/assets/img/logo250.png" class="rounded-circle p-1 bg-soft-danger" width="60" height="60"
+                  alt="1" loading="lazy" />
               </div>
               <div>
-                <h5>EN este sentido,</h5>
+                <h5>En este sentido,</h5>
               </div>
             </div>
             <div>
-              <p>Para la presente fecha, la Alcaldía está bajo el cargo del Doctor Henry Maldonado Paredes como
+              <p>para la presente fecha, la Alcaldía está bajo el cargo del Doctor Henry Maldonado Paredes como
                 máxima
                 autoridad del Municipio Cruz Paredes.</p>
             </div>
@@ -170,7 +177,7 @@
     <div class="container">
       <div class="row row-cols-1 row-cols-sm-2 row-cols-md-5 align-items-center">
 
-        <div class="col mb-lg-0 mb-5 d-flex justify-content-center rounded" >
+        <div class="col mb-lg-0 mb-5 d-flex justify-content-center rounded">
           <ClientWidget :clientImage="require('@/assets/img/general.png')" />
         </div>
         <div class="col mb-lg-0 mb-5 d-flex justify-content-center rounded">
@@ -284,9 +291,9 @@ export default {
     FooterComponent,
     TeamWidgetVue,
     ClientWidget,
-   /*  BlogWidget,
-    Swiper,
-    SwiperSlide */
+    /*  BlogWidget,
+     Swiper,
+     SwiperSlide */
   },
   setup() {
     const store = useStore()
@@ -554,11 +561,12 @@ h6 {
     }
   }
 }
-.alcalde{
-  
+
+.alcalde {
+
   position: absolute;
-    right: 1px;
-    bottom: 1px;
-    z-index: 0;
+  right: 1px;
+  bottom: 1px;
+  z-index: 0;
 }
 </style>

@@ -232,6 +232,7 @@
 import { computed, ref, onMounted, onUnmounted } from 'vue'
 import { useStore } from 'vuex'
 
+import router from '@/router';
 import authService from '@/services/authService'
 export default {
   components: {},
@@ -275,7 +276,9 @@ export default {
     const logout = () => {
       console.log('presionando boton');
 
-      authService.signOut()
+      authService.signOut();
+      
+      router.replace('/auth/login');
     }
     return {
       headerNavbar,

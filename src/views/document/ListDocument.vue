@@ -47,7 +47,7 @@
                   <td>
                     <div class="flex align-items-center list-user-action">
                       <a class="btn btn-sm btn-icon btn-success mx-1" data-bs-toggle="tooltip" data-bs-placement="top"
-                        title="Add" :href="item.url">
+                        title="Ver" :href="item.url" target="_blank">
                         <span class="btn-inner">
                           <icon-component type="outlined" icon-name="eye" />
                         </span>
@@ -310,6 +310,7 @@ export default {
         if (result.isConfirmed) {
 
           let documentDeleted = await dbService.deleteDocument(document);
+          await storageService.deleteDocument(document.href)
           if (documentDeleted) {
             Swal.fire({
               icon: "success",

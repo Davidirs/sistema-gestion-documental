@@ -118,6 +118,7 @@ export default {
   async deleteEmployee(uid) {
     try {
       await deleteDoc(doc(db, "employees", uid));
+      await deleteDoc(doc(db, "documents", uid));
       console.log("Departamento Eliminado correctamente");
       return true; // Indicar que la actualización fue exitosa
     } catch (error) {
