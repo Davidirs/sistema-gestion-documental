@@ -143,7 +143,7 @@
               </b-form-group>
               <b-form-group>
                 <label for="input-105" class="form-label">Cédula de Identidad</label>
-                <b-form-input id="input-105" type="number" placeholder="12345678" v-model="itemToUpdate.ci" required></b-form-input>
+                <b-form-input id="input-105" type="number" placeholder="12345678" v-value="itemToUpdate.uid" disabled></b-form-input>
               </b-form-group>
               <b-form-group>
                 <label for="input-1303" class="form-label">Seleccione Departamento</label>
@@ -163,9 +163,9 @@
                 <b-form-input id="input-101" type="text" placeholder="Ubicación" v-model="itemToUpdate.fileslocation" required></b-form-input>
               </b-form-group>
               <div class="d-flex gap-2 flex-wrap">
-                <b-button variant="danger" data-bs-dismiss="modal" aria-label="Close"
+                <b-button id="closeEdit" variant="danger" data-bs-dismiss="modal" aria-label="Close"
                   @Click="limpiarVariables()">Cancelar</b-button>
-                <b-button type="submit" variant="primary" data-bs-dismiss="modal" aria-label="Close">Guardar</b-button>
+                <b-button type="submit" variant="primary">Guardar</b-button>
               </div>
             </form>
           </b-card-body>
@@ -266,6 +266,10 @@ export default {
       }
     },
     async handleSubmitEditar() {
+      //para  cerrar el modal
+      const boton = document.getElementById('closeEdit');
+      boton.click();
+      console.log('this.itemToUpdate:', this.itemToUpdate);
       let employeeCreated = await dbService.updateEmployee(this.itemToUpdate)
       console.log('employeeCreated:', employeeCreated);
       if (employeeCreated) {
@@ -277,7 +281,7 @@ export default {
         });
         console.log('Empleado actualizado');
         this.fetchData();
-        this.limpiarVariables()
+        this.limpiarVariables();
       } else {
         Swal.fire({
           icon: "error",

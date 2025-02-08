@@ -113,9 +113,9 @@
                   v-model="itemToUpdate.name" required></b-form-input>
               </b-form-group>
               <div class="d-flex gap-2 flex-wrap">
-                <b-button variant="danger" data-bs-dismiss="modal" aria-label="Close"
+                <b-button id="closeEdit" variant="danger" data-bs-dismiss="modal" aria-label="Close"
                   @Click="limpiarVariables()">Cancelar</b-button>
-                <b-button type="submit" variant="primary" data-bs-dismiss="modal" aria-label="Close">Guardar</b-button>
+                <b-button type="submit" variant="primary">Guardar</b-button>
               </div>
             </form>
           </b-card-body>
@@ -186,6 +186,9 @@ export default {
       }
     },
     async handleSubmitEditar() {
+      //para  cerrar el modal
+      const boton = document.getElementById('closeEdit');
+      boton.click();
       let departmentCreated = await dbService.updateDepartment(this.itemToUpdate)
       console.log('departmentCreated:', departmentCreated);
       if (departmentCreated) {

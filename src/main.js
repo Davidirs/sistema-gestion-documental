@@ -71,14 +71,13 @@ import globalDirective from './plugins/global-directive';
 import globalMixin from './plugins/global-mixin';
 
 
-import { auth, onAuthStateChanged } from "@/firebase";
+import {auth, onAuthStateChanged } from "@/firebase";
 
 let vueApp;
 
-onAuthStateChanged(auth, (user) => {
+//onAuthStateChanged(auth, (user) => {
+onAuthStateChanged(auth,() => {
 
-  console.log('user:',user);
-  
   if (!vueApp) {
     vueApp = createApp(App)
       .use(store)

@@ -73,6 +73,7 @@
 import dbService from '@/services/dbService'
 import ProfileWidget from '@/components/widgets/users/ProfileWidget.vue'
 
+import Swal from 'sweetalert2'
 export default {
   components: {
     ProfileWidget
@@ -93,8 +94,11 @@ export default {
       if (this.employee) {
         console.log('Empleado encontrado');
       } else {
-        console.log('empleado no existe');
-
+        Swal.fire({
+          icon: "info",
+          title: "No encontrado",
+          text: "El número de cédula no corresponde con algún empleado.",
+        });
       }
     },
   },

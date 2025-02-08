@@ -15,7 +15,7 @@
             
           </div>
           <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalCrearDocumento"
-            :disabled="selectedEmployee == ''">Añadir</button>
+          :disabled="JSON.stringify(selectedEmployee.value) === '{}'" >Añadir</button>
         </div>
         <div class="card-body px-0">
           <div class="table-responsive">
@@ -27,7 +27,7 @@
                   <th>Título</th>
                   <th>Empleado</th>
                   <th>Fecha de vencimiento</th>
-                  <th>Ubicación de los expedientes</th>
+                  <!-- <th>Ubicación de los expedientes</th> -->
                   <th style="min-width: 100px">Acciones</th>
                 </tr>
               </thead>
@@ -43,7 +43,7 @@
                   <td>{{ item.title }}</td>
                   <td>{{ item.employee }}</td>
                   <td>{{ item.enddate }}</td>
-                  <td>{{ item.fileslocation }}</td>
+                  <!-- <td>{{ item.fileslocation }}</td> -->
                   <td>
                     <div class="flex align-items-center list-user-action">
                       <a class="btn btn-sm btn-icon btn-success mx-1" data-bs-toggle="tooltip" data-bs-placement="top"
@@ -92,7 +92,7 @@
         </b-card-header>
         <div class="modal-body bg-blue200">
           <b-card-body>
-            <form @submit.prevent="handleSubmitCrear">
+            <form @submit.prevent="handleSubmitCrear(selectedEmployee.value)">
               <b-form-group>
                 <h6>{{ selectedEmployee.text }}</h6>
               </b-form-group>
@@ -106,13 +106,13 @@
                 <b-form-input id="input-107" type="date" placeholder="2019-12-18" v-model="enddate"
                   required></b-form-input>
               </b-form-group>
-              <b-form-group>
+              <!-- <b-form-group>
                 <label for="input-101" class="form-label">Ubicación de los expedientes</label>
                 <b-form-input id="input-101" type="text" placeholder="Ubicación" v-model="fileslocation"
                   required></b-form-input>
-              </b-form-group>
+              </b-form-group> -->
               <b-form-group>
-                <label for="input-101" class="form-label">Ubicación de los expedientes</label>
+                <label for="input-101" class="form-label">Documento</label>
 
                 <div class="form-group mb-0">
                   <input type="file" class="form-control" aria-label="file example" required=""
@@ -120,9 +120,9 @@
                 </div>
               </b-form-group>
               <div class="d-flex gap-2 flex-wrap">
-                <b-button variant="danger" data-bs-dismiss="modal" aria-label="Close"
+                <b-button id="closeCreate"  variant="danger" data-bs-dismiss="modal" aria-label="Close"
                   @Click="limpiarVariables()">Cancelar</b-button>
-                <b-button type="submit" variant="primary" data-bs-dismiss="modal" aria-label="Close">Aceptar</b-button>
+                <b-button type="submit" variant="primary" >Aceptar</b-button>
               </div>
             </form>
           </b-card-body>
@@ -151,15 +151,10 @@
                 <b-form-input id="input-107" type="date" placeholder="2019-12-18"
                   v-model="itemToUpdate.enddate"></b-form-input>
               </b-form-group>
-              <b-form-group>
-                <label for="input-101" class="form-label">Ubicación de los expedientes</label>
-                <b-form-input id="input-101" type="text" placeholder="Ubicación" v-model="itemToUpdate.fileslocation"
-                  required></b-form-input>
-              </b-form-group>
               <div class="d-flex gap-2 flex-wrap">
-                <b-button variant="danger" data-bs-dismiss="modal" aria-label="Close"
+                <b-button id="closeEdit" variant="danger" data-bs-dismiss="modal" aria-label="Close"
                   @Click="limpiarVariables()">Cancelar</b-button>
-                <b-button type="submit" variant="primary" data-bs-dismiss="modal" aria-label="Close">Guardar</b-button>
+                <b-button type="submit" variant="primary">Guardar</b-button>
               </div>
             </form>
           </b-card-body>
@@ -191,11 +186,11 @@ export default {
 
     const tableData = ref([]);
     //const listDepartment = ref([]);
-    const itemToUpdate = ref([]);
-    const selectedEmployee = ref('');
+    const itemToUpdate = ref({});
+    const selectedEmployee = ref({});
     const title = ref('');
     const enddate = ref('');
-    const fileslocation = ref('');
+    //const fileslocation = ref('');
 
     const selectedFile = ref(null);
     const uploadProgress = ref(0);
@@ -214,7 +209,7 @@ export default {
       itemToUpdate,
       title,
       enddate,
-      fileslocation,
+      //fileslocation,
       selectedFile,
       uploadProgress,
       downloadURL,
@@ -237,7 +232,7 @@ export default {
 
   methods: {
     async fetchData() {
-
+console.log(this.selectedEmployee.value)
       let employee = await dbService.getEmployees();
       this.listEmployee.value = employee.map(dep => ({
         value: dep.uid,
@@ -253,28 +248,44 @@ export default {
       this.limpiarVariables();
     },
 
-    async handleSubmitCrear() {
+    async handleSubmitCrear(emp) {
       console.log('title:', this.title);
       console.log('enddate:', this.enddate);
-      console.log('fileslocation:', this.fileslocation);
+      //console.log('fileslocation:', this.fileslocation);
       console.log('selectedFile:', this.selectedFile);
-      console.log('selectedEmployee.uid:', this.selectedEmployee.value);
-
-      let document = {
-        uid: this.selectedEmployee.value,
-        employee: this.selectedEmployee.text,
+      console.log('selectedEmployee:', emp);
+if(this.selectedFile){
+  
+      let documento = {
+        uid: emp.value,
+        employee: emp.text,
         title: this.title,
         enddate: this.enddate,
-        fileslocation: this.fileslocation,
+        //fileslocation: this.fileslocation,
         fileName: this.selectedFile.name,
         url: '',
-        href: `documents/${this.selectedEmployee.value}/${this.title}-${this.selectedFile.name}`,
+        href: `documents/${emp.value}/${this.title}-${this.selectedFile.name}`,
       };
-      document.url = await storageService.uploadFile(this.selectedFile, document)
-      console.log('url:', document);
-      this.limpiarVariables();
+      
+      documento.url = await storageService.uploadFile(this.selectedFile, documento)
+      console.log('url:', documento);
+      this.tableData.value.push(documento)
+      //para  cerrar el modal
+      const boton = document.getElementById('closeCreate');
+      boton.click();
+    }else{
+      Swal.fire({
+          icon: "info",
+          title: "Seleccione otro archivo!",
+          showConfirmButton: false,
+          timer: 1500
+        });
+    }
     },
     async handleSubmitEditar() {
+      //para  cerrar el modal
+      const boton = document.getElementById('closeEdit');
+      boton.click();
       let documentCreated = await dbService.updateDocument(this.itemToUpdate)
       console.log('documentCreated:', documentCreated);
       if (documentCreated) {
@@ -332,8 +343,14 @@ export default {
       });
     },
     limpiarVariables() {
-      this.name = '';
-      this.selectedEmployee = '';
+      console.log('limpiarVariables');
+      
+      this.title = '';
+      this.enddate = '';
+      this.selectedEmployee.value = {};
+      this.itemToUpdate.value = {};
+      this.selectedFile= null;
+      console.log(this.selectedFile );
     },
     setUpdate(item) {
       console.log(item);
@@ -341,20 +358,20 @@ export default {
 
     },
     handleFileChange(event) {
-      //console.log(event.target.files[0]);
-
+      
       this.selectedFile = event.target.files[0];
+      console.log('this.selectedFile ',this.selectedFile);
     },
     async handleEmployeeChange(nameEmployee) {
-
+      
       // Optionally, access the full selected employee object using listEmployee
       const object = this.listEmployee.value.find(
         (employee) => employee.value === nameEmployee
       );
-      this.selectedEmployee = object
+      this.selectedEmployee.value = object
       this.tableData.value = await dbService.listDocuments(object.value);
       if (object) {
-        console.log("Selected employee object:", object);
+        console.log("Selected employee object:", this.selectedEmployee.value);
       } else {
         console.warn("Selected employee object not found in listEmployee");
       }

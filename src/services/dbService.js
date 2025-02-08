@@ -1,10 +1,14 @@
 //crear usauario en la base de datos con las credenciales que se registró
 import { db } from '@/firebase'
 import User from '@/models/user';
-import Department from '@/models/departament';
-import Employee from '@/models/employee';
+//import Department from '@/models/departament';
+//import Employee from '@/models/employee';
 //import Document from '@/models/document';
-import { setDoc, doc, collection, getDocs, getDoc, updateDoc, deleteDoc, arrayUnion, arrayRemove } from 'firebase/firestore';
+import {
+  setDoc, doc, collection, getDocs, getDoc, updateDoc, deleteDoc,
+  arrayUnion,
+  arrayRemove
+} from 'firebase/firestore';
 
 //import Swal from 'sweetalert2'
 
@@ -24,7 +28,7 @@ export default {
     const querySnapshot = await getDocs(collection(db, "departments"));
     querySnapshot.forEach((doc) => {
       const departmentData = doc.data();
-      departments.push(new Department(departmentData));
+      departments.push(departmentData);
     });
     return departments;
   },
@@ -69,27 +73,27 @@ export default {
     const querySnapshot = await getDocs(collection(db, "employees"));
     querySnapshot.forEach((doc) => {
       const employeeData = doc.data();
-      employees.push(new Employee(employeeData));
+      employees.push(employeeData);
     });
     return employees;
   },
-  async  getEmployeeByCI(ci) {
+  async getEmployeeByCI(ci) {
     // Referencia al documento con el CI como UID
     const employeeRef = doc(db, "employees", ci);
-  
+
     // Obtener el documento
     const employeeSnap = await getDoc(employeeRef);
-  
+
     // Verificar si el documento existe
     if (!employeeSnap.exists()) {
       console.log("No se encontró ningún empleado con esa cédula.");
       return null;
     }
-  
+
     // Retornar los datos del empleado
     return employeeSnap.data();
   },
-  
+
   async addEmployee(employee) {
     // Create a new document reference with a generated ID
     //const newDepRef = doc(collection(db, "employees"));
@@ -136,18 +140,18 @@ export default {
       const querySnapshot = await getDocs(documentsRef); // Get all documents in the collection
 
       const documents = []; // Empty array to store retrieved documents
-      querySnapshot.forEach((doc) => {
-        const data = doc.data(); // Get data from each document
-        documents.push(data.docs); // Extract and push the "docs" array from each document
-      });
+      if (querySnapshot) {
 
-      // Flatten the "documents" array (optional, if you want a single list of documents)
-      const flattenedDocuments = documents.flat();
+        querySnapshot.forEach((doc) => {
+          const data = doc.data(); // Get data from each document
+          documents.push(data.docs); // Extract and push the "docs" array from each document
+        });
 
-      // Use the retrieved documents for display or further processing
-      console.log("Retrieved documents:", flattenedDocuments); // Example usage
+        // Flatten the "documents" array (optional, if you want a single list of documents)
+        const flattenedDocuments = documents.flat();
 
-      return flattenedDocuments; // Optional: return the documents for further use
+        return flattenedDocuments; // Optional: return the documents for further use
+      }
     } catch (error) {
       console.error("Error fetching documents:", error);
     }
@@ -156,22 +160,30 @@ export default {
     try {
       const documentsRef = doc(db, "documents", uid); // Reference to the "documents" collection
       const querySnapshot = await getDoc(documentsRef); // Get all documents in the collection
-      console.log(querySnapshot.data().docs);
 
-      const documents = querySnapshot.data().docs; // Empty array to store retrieved documents
+      if (querySnapshot) {
+        console.log(querySnapshot.data().docs);
 
-      return documents; // Optional: return the documents for further use
+        const documents = querySnapshot.data().docs; // Empty array to store retrieved documents
+
+        return documents; // Optional: return the documents for further use
+      }
+
     } catch (error) {
-      console.error("Error fetching documents:", error);
+      console.log("Usuario sin documentos");
+
     }
   },
   async addDocument(document) {
-    const docRef = doc(db, "documents", document.uid); // Usa el uid existente o genera uno nuevo si es necesario
     let documentCreated = false;
+
+    console.log('document', document);
+
     try {
-      await updateDoc(docRef, {
-        docs: arrayUnion(document) // Agrega el nuevo documento al array
-      });
+      const docRef = doc(db, "documents", document.uid);
+
+      // Directamente intenta actualizar el documento, si no existe, lo crea
+      await setDoc(docRef, { docs: arrayUnion(document) }, { merge: true });
       console.log("Document added to array successfully!");
       documentCreated = true;
     } catch (error) {

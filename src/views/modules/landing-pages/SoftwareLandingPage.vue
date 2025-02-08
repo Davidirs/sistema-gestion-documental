@@ -191,7 +191,7 @@
               <h6 class="mb-3">Pro</h6>
               <h4 class="">
                 $199<br />
-                <h6>/Month</h6>
+                <p>/Month</p>
               </h4>
               <router-link to="#" class="btn btn-primary mt-3">Get Started</router-link>
             </div>
@@ -210,7 +210,7 @@
               <h6 class="mb-3 text-white">Enterprise</h6>
               <h4 class="text-white">
                 $399<br />
-                <h6 class="text-white">/Month</h6>
+                <p class="text-white">/Month</p>
               </h4>
               <router-link to="#" class="active btn btn-outline-light mt-3" style="background-color: #3a57e8; color: #fff" onmouseover="this.style.backgroundColor='#ccc'" onmouseout="this.style.backgroundColor='#3a57e8'; this.style.borderColor='#fff';">Get Started</router-link>
             </div>
@@ -230,7 +230,7 @@
               <h6 class="mb-3">Premium</h6>
               <h4 class="">
                 5399<br/>
-                <h6>/Month</h6>
+                <p>/Month</p>
               </h4>
               <router-link to="#" class="btn btn-primary mt-3">Get Started</router-link>
             </div>
