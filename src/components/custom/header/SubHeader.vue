@@ -6,7 +6,8 @@
           <div class="d-flex justify-content-between align-items-center flex-wrap">
             <div>
               <h1>Hola Amigo!</h1>
-              <p>Este es el sistema de gestión de Alcaldía Cruz Paredes.</p>
+              <!-- <h2>Hola Amigo!</h2>
+              <p>Este es el sistema de gestión de Alcaldía Cruz Paredes.</p> -->
             </div>
             <!-- <div>
               <a href="" class="btn btn-link btn-soft-light">

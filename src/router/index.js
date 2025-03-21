@@ -7,7 +7,14 @@ const designSystemChildRoutes = (prefix) => [
     name: prefix + '.main',
     meta: { auth: true, name: 'Design System' },
     component: () => import('@/views/design-system/IndexPage.vue')
-  },/* 
+  },  
+  {
+    path: '/dsec',
+    name: prefix + 'dsec',
+    meta: { auth: true, name: 'dsec'},
+    component: () => import('@/views/modules/landing-pages/DSEC.vue')
+  }
+  /* 
   
   {
     path: '/consulta',
@@ -54,7 +61,8 @@ const authChildRoutes = (prefix) => [
     name: prefix + 'consulta',
     meta: { auth: true, name: 'Consulta', isBanner: true, header: 'header_one', footer: 'footer' },
     component: () => import('@/views/modules/landing-pages/ConsultPage.vue')
-  }
+  },
+  
 ]
 
 // Dashboard routes
