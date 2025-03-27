@@ -26,7 +26,7 @@
     "core-js": "^3.6.5",
     "datatables.net-bs5": "^1.11.2",
     "dotenv": "^16.4.7",
-    "firebase": "^11.2.0",
+    "firebase": "^11.5.0",
     "fslightbox-vue": "^2.1.1-2",
     "jquery": "^3.6.4",
     "js-circle-progress": "^0.2.4",
