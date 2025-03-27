@@ -88,7 +88,8 @@ export default {
       if (userCredential) {
          await dbService.addUser(userCredential.user);
          console.log('Login exitoso');
-         router.replace('/dashboard');
+         //router.replace('/dashboard');
+         router.replace('/empleados');
         }else{
          console.log('Verificar credenciales');
 

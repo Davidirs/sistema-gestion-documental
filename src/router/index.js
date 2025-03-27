@@ -2,6 +2,18 @@ import { createRouter, createWebHistory } from 'vue-router'
 import { auth } from "@/firebase";
 // Design System Routes
 const designSystemChildRoutes = (prefix) => [
+  /* {
+    path: '',
+    name: prefix + '.main',
+    meta: { auth: true, name: 'Design System' },
+    component: () => import('@/views/design-system/IndexPage.vue')
+  },  */ 
+  {
+    path: '',
+    name: prefix + '.login',
+    meta: { auth: false, name: 'Login' },
+    component: () => import('@/views/auth/default/SignIn.vue')
+  },
   {
     path: '',
     name: prefix + '.main',
@@ -72,7 +84,7 @@ const dashboardRoutes = (prefix) => [
     name: prefix + '.dashboard',
     meta: { auth: true, name: 'Home', isBanner: false, requiresAuth: true },
     component: () => import('@/views/dashboards/IndexPage.vue')
-  }
+  },
 ]
 // Default routes
 const defaultChildRoutes = (prefix) => [
@@ -82,6 +94,7 @@ const defaultChildRoutes = (prefix) => [
     meta: { auth: true, name: 'Home', isBanner: true, requiresAuth: true },
     component: () => import('@/views/dashboards/IndexPage.vue')
   },
+  
   // Spacial Pages
   {
     path: '/billing',
@@ -441,10 +454,12 @@ router.beforeEach((to, from, next) => {
     next("/auth/login"); // Si no está autenticado, lo mandamos a login
   } else if (user && to.path === "/auth/login") {
     console.log('Ya autenticado, redirigiendo a dashboard');
-    next("/dashboard"); // Si ya está autenticado y va a login, lo mandamos a dashboard
+    //next("/dashboard"); // Si ya está autenticado y va a login, lo mandamos a dashboard
+    next("/empleados"); // Si ya está autenticado y va a login, lo mandamos a dashboard
   } else {
     next(); // En cualquier otro caso, dejamos que continúe
   }
+  
 });
 
 

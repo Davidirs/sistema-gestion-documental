@@ -22,7 +22,7 @@
                   <th>Departamento</th>
                   <th>Cargo</th>
                   <th>Año de ingreso</th>
-                  <th>Ubicación de los expedientes</th>
+                  <!-- <th>Ubicación de los expedientes</th> -->
                   <th style="min-width: 100px">Acciones</th>
                 </tr>
               </thead>
@@ -38,15 +38,15 @@
                   <td>{{ item.department }}</td>
                   <td>{{ item.position }}</td>
                   <td>{{ item.entrydate }}</td>
-                  <td>{{ item.fileslocation }}</td>
+                  <!-- <td>{{ item.fileslocation }}</td> -->
                   <td>
                     <div class="flex align-items-center list-user-action">
-                      <!-- <a class="btn btn-sm btn-icon btn-success mx-1" data-bs-toggle="tooltip" data-bs-placement="top"
-                        title="Add" href="#">
+                      <a class="btn btn-sm btn-icon btn-success mx-1" data-bs-toggle="tooltip" data-bs-placement="top"
+                        title="Ver" :href="`/dsec?ci=${item.uid}`" target="_blank">
                         <span class="btn-inner">
-                          <icon-component type="outlined" icon-name="user-add" />
+                          <icon-component type="outlined" icon-name="eye" />
                         </span>
-                      </a> -->
+                      </a>
                       <button class="btn btn-sm btn-icon btn-warning mx-1" data-bs-placement="top"
                         data-bs-original-title="Edit" data-bs-toggle="modal" data-bs-target="#modalEditarEmpleado"
                         @click="setUpdate(item)">
@@ -110,10 +110,10 @@
                 <label for="input-107" class="form-label">Fecha de Ingreso </label>
                 <b-form-input id="input-107" type="date" placeholder="2019-12-18" v-model="entrydate" required></b-form-input>
               </b-form-group>
-              <b-form-group>
+              <!-- <b-form-group>
                 <label for="input-101" class="form-label">Ubicación de los expedientes</label>
                 <b-form-input id="input-101" type="text" placeholder="Ubicación" v-model="fileslocation" required></b-form-input>
-              </b-form-group>
+              </b-form-group> -->
               <div class="d-flex gap-2 flex-wrap">
                 <b-button variant="danger" data-bs-dismiss="modal" aria-label="Close"
                   @Click="limpiarVariables()">Cancelar</b-button>
@@ -143,7 +143,7 @@
               </b-form-group>
               <b-form-group>
                 <label for="input-105" class="form-label">Cédula de Identidad</label>
-                <b-form-input id="input-105" type="number" placeholder="12345678" v-value="itemToUpdate.uid" disabled></b-form-input>
+                <b-form-input id="input-105" type="text" placeholder="12345678" v-model="itemToUpdate.uid" disabled></b-form-input>
               </b-form-group>
               <b-form-group>
                 <label for="input-1303" class="form-label">Seleccione Departamento</label>
@@ -158,10 +158,10 @@
                 <label for="input-107" class="form-label">Fecha de Ingreso </label>
                 <b-form-input id="input-107" type="date" placeholder="2019-12-18" v-model="itemToUpdate.entrydate" required></b-form-input>
               </b-form-group>
-              <b-form-group>
+              <!-- <b-form-group>
                 <label for="input-101" class="form-label">Ubicación de los expedientes</label>
                 <b-form-input id="input-101" type="text" placeholder="Ubicación" v-model="itemToUpdate.fileslocation" required></b-form-input>
-              </b-form-group>
+              </b-form-group> -->
               <div class="d-flex gap-2 flex-wrap">
                 <b-button id="closeEdit" variant="danger" data-bs-dismiss="modal" aria-label="Close"
                   @Click="limpiarVariables()">Cancelar</b-button>
@@ -242,7 +242,7 @@ export default {
         department: this.department,
         position: this.position,
         entrydate: this.entrydate,
-        fileslocation: this.fileslocation,
+        fileslocation: "n/a",//this.fileslocation,
       });
       let employeeCreated = await dbService.addEmployee(employee.toJson())
       console.log('employeeCreated:', employeeCreated);
