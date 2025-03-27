@@ -1,7 +1,7 @@
 {
   "projects": {
-    "default": "dsec-cruz-paredez",
-    "dsec": "dsec-cruz-paredez"
+    "default": "dsec-cruz-paredes",
+    "dsec": "dsec-cruz-paredes"
   },
   "targets": {},
   "etags": {}
