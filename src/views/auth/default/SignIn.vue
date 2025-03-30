@@ -23,7 +23,17 @@
                   <div class="col-lg-12">
                     <div class="form-group">
                       <label for="password" class="form-label">Contraseña</label>
-                      <input type="password" class="form-control" id="password" v-model="password" required />
+                      <div class="d-flex justify-content-between">
+                        <input :type="viewPass ? 'text' : 'password'" class="form-control" id="password"
+                          v-model="password" required />
+                        <button type="button" class="btn btn-sm btn-icon btn-info mx-1" data-bs-toggle="tooltip"
+                          data-bs-placement="top" :title="viewPass ? 'Ocultar contraseña' : 'Mostrar contraseña'"
+                          aria-label="Mostrar/Ocultar contraseña" @click="viewPass = !viewPass">
+                          <span class="btn-inner">
+                            <icon-component type="outlined" :icon-name="viewPass ? 'eye' : 'eye-off'" />
+                          </span>
+                        </button>
+                      </div>
                     </div>
                   </div>
                   <div class="col-lg-12 d-flex justify-content-between">
@@ -68,6 +78,7 @@
 import router from '@/router';
 import authService from '@/services/authService'
 import dbService from '@/services/dbService'
+import Swal from 'sweetalert2';
 export default {
 
   data() {
@@ -75,6 +86,7 @@ export default {
       email: '',
       password: '',
       rememberMe: false,
+      viewPass: false
     };
   },
   methods: {
@@ -83,17 +95,42 @@ export default {
       console.log('Password:', this.password);
       console.log('Remember Me:', this.rememberMe);
 
-      let userCredential = await authService.signIn(this.email, this.password)
+      Swal.fire({
+        title: 'Iniciando sesión...',
+        html: 'Por favor, espere...',
+        allowOutsideClick: false,
+        showConfirmButton: false,
+        willOpen: () => {
+          Swal.showLoading();
+        },
+      });
 
-      if (userCredential) {
-         await dbService.addUser(userCredential.user);
-         console.log('Login exitoso');
-         //router.replace('/dashboard');
-         router.replace('/empleados');
-        }else{
-         console.log('Verificar credenciales');
+      try {
 
-       }
+
+        let userCredential = await authService.signIn(this.email, this.password)
+
+        await dbService.addUser(userCredential.user);
+        console.log('Login exitoso');
+        //router.replace('/dashboard');
+        router.replace('/empleados');
+
+        // Operación exitosa
+        Swal.fire({
+          icon: 'success',
+          title: '¡Sesión iniciada!',
+          showConfirmButton: false,
+          timer: 1500,
+        });
+      } catch (error) {
+        // Operación fallida
+        Swal.fire({
+          icon: 'error',
+          title: 'Error al iniciar sesión',
+          text: 'Verifique sus credenciales',
+        });
+      }
+
     },
   },
 };

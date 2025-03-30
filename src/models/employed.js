@@ -6,6 +6,7 @@ class Employed {
         this.departament = data.departament;
         this.ci = data.ci;
         this.name = data.name;
+        this.bloodGroup = data.bloodGroup;
       }
   
     fromJson(json) {
@@ -15,6 +16,7 @@ class Employed {
       this.cargo = json['cargo'];
       this.date = json['date'];
       this.ubicacionExp = json['ubicacionExp'];
+      this.bloodGroup = json['bloodGroup'];
     }
   
     toJson() {
@@ -25,6 +27,7 @@ class Employed {
       data['cargo'] = this.cargo;
       data['date'] = this.date;
       data['ubicacionExp'] = this.ubicacionExp;
+      data['bloodGroup'] = this.bloodGroup;
       return data;
     }
   }
