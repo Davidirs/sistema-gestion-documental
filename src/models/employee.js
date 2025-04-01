@@ -7,6 +7,7 @@ class Employee {
         this.department = data.department;
         this.position = data.position||null;
         this.entrydate = data.entrydate||null;
+        this.bloodgroup = data.bloodgroup||null;
         this.fileslocation = data.fileslocation||null;
       }
   
@@ -18,6 +19,7 @@ class Employee {
       this.department = json['department'];
       this.position = json['position'];
       this.entrydate = json['entrydate'];
+      this.bloodgroup = json['bloodgroup'];
       this.fileslocation = json['fileslocation'];
     }
   
@@ -30,6 +32,7 @@ class Employee {
       data['department'] = this.department;
       data['position'] = this.position;
       data['entrydate'] = this.entrydate;
+      data['bloodgroup'] = this.bloodgroup;
       data['fileslocation'] = this.fileslocation;
       return data;
     }

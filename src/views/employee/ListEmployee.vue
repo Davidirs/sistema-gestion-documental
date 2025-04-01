@@ -21,6 +21,7 @@
                   <th>Cedula</th>
                   <th>Departamento</th>
                   <th>Cargo</th>
+                  <th>Grupo sanguíneo</th>
                   <th>Año de ingreso</th>
                   <!-- <th>Ubicación de los expedientes</th> -->
                   <th style="min-width: 100px">Acciones</th>
@@ -37,6 +38,7 @@
                   <td>{{ item.uid }}</td>
                   <td>{{ item.department }}</td>
                   <td>{{ item.position }}</td>
+                  <td>{{ item.bloodgroup }}</td>
                   <td>{{ item.entrydate }}</td>
                   <!-- <td>{{ item.fileslocation }}</td> -->
                   <td>
@@ -107,6 +109,11 @@
                   v-model="position" required></b-form-input>
               </b-form-group>
               <b-form-group>
+                <label for="input-101" class="form-label">Grupo Sanguíneo</label>
+                <b-form-input id="input-101" type="text" placeholder="Grupo sanguíneo del empleado"
+                  v-model="bloodgroup" required></b-form-input>
+              </b-form-group>
+              <b-form-group>
                 <label for="input-107" class="form-label">Fecha de Ingreso </label>
                 <b-form-input id="input-107" type="date" placeholder="2019-12-18" v-model="entrydate" required></b-form-input>
               </b-form-group>
@@ -154,6 +161,12 @@
                 <b-form-input id="input-101" type="text" placeholder="Cargo del empleado"
                   v-model="itemToUpdate.position" required></b-form-input>
               </b-form-group>
+              
+              <b-form-group>
+                <label for="input-101" class="form-label">Grupo Sanguíneo</label>
+                <b-form-input id="input-101" type="text" placeholder="Grupo sanguíneo del empleado"
+                  v-model="bloodgroup" required></b-form-input>
+              </b-form-group>
               <b-form-group>
                 <label for="input-107" class="form-label">Fecha de Ingreso </label>
                 <b-form-input id="input-107" type="date" placeholder="2019-12-18" v-model="itemToUpdate.entrydate" required></b-form-input>
@@ -192,6 +205,7 @@ export default {
     const department = ref('');
     const position = ref('');
     const entrydate = ref('');
+    const bloodgroup = ref('');
     const fileslocation = ref('');
 
 
@@ -209,6 +223,7 @@ export default {
       department,
       position,
       entrydate,
+      bloodgroup,
       fileslocation,
       //isLoading,
     };
@@ -235,6 +250,7 @@ export default {
       console.log('department:', this.department);
       console.log('position:', this.position);
       console.log('entrydate:', this.entrydate);
+      console.log('bloodgroup:', this.bloodgroup);
       console.log('fileslocation:', this.fileslocation);
       let employee = new Employee({
         uid: String(this.ci),
@@ -242,6 +258,7 @@ export default {
         department: this.department,
         position: this.position,
         entrydate: this.entrydate,
+        bloodgroup: this.bloodgroup,
         fileslocation: "n/a",//this.fileslocation,
       });
       let employeeCreated = await dbService.addEmployee(employee.toJson())
