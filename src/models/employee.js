@@ -9,6 +9,8 @@ class Employee {
         this.entrydate = data.entrydate||null;
         this.bloodgroup = data.bloodgroup||null;
         this.fileslocation = data.fileslocation||null;
+        this.url = data.url||null;
+        this.href = data.href||null;
       }
   
     fromJson(json) {
@@ -21,6 +23,8 @@ class Employee {
       this.entrydate = json['entrydate'];
       this.bloodgroup = json['bloodgroup'];
       this.fileslocation = json['fileslocation'];
+      this.url = json['url'];
+      this.href = json['href'];
     }
   
     toJson() {
@@ -34,6 +38,8 @@ class Employee {
       data['entrydate'] = this.entrydate;
       data['bloodgroup'] = this.bloodgroup;
       data['fileslocation'] = this.fileslocation;
+      data['url'] = this.url;
+      data['href'] = this.href;
       return data;
     }
   }

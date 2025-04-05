@@ -1,5 +1,5 @@
 <template>
-  <header class="d-flex align-items-center w-100">
+  <header class="d-flex align-items-center w-100 pt-3">
 
     <img src="https://i.ibb.co/bXJLPMR/Alcald-a-Cruz-Paredes.jpg" alt="" class="col-2">
     <div class="col-8 text-center">
@@ -11,33 +11,38 @@
 
   </header>
 
-  <section class="p-5 w-100 bg-img minheight">
+  <section class="p-5 w-100 bg-img minheight d-flex justify-content-between">
     <div v-if="employee != null">
-      <h5><!-- <b>Nombres:</b> --> {{ name }}</h5>
+      <h5><b>Nombre y Apellido:</b><br> {{ name }}</h5>
       <!-- <br>
 <h5><b>Apellidos:</b> {{lastname}}</h5> -->
       <br>
-      <h5><b>C.I.:</b> {{ ci }}</h5>
+      <h5><b>Cédula de Identidad:</b><br> V-{{ ci }}</h5>
       <br>
-      <h5><b>Grupo sanguíneo:</b> {{ bloodgroup }}</h5>
+      <h5><b>Grupo sanguíneo:</b><br> {{ bloodgroup }}</h5>
       <br>
-      <h5><b>Cargo:</b> {{ cargo }}</h5>
+      <h5><b>Cargo:</b><br> {{ cargo }}</h5>
       <br>
-      <h5><b>Fecha de Ingreso:</b> {{ entrydate }}</h5>
+      <h5><b>Fecha de Ingreso:</b><br> {{ formatDate(entrydate) }}</h5>
       <br>
 
-      <footer class="p-5">
-        <h5>
-          Rif.: G-20000238-7
-        </h5>
-      </footer>
-      
+
+
 
     </div>
-    <center>
-    <h3>"Todos los derechos para todas las personas."</h3>
-    </center>
+    <div v-if="employee != null" class="col-4 img-perfil" :style="{ backgroundImage: `url('${image}')` }">
+      <!-- <img :src="image" class="img-fluid w-100" alt=""> -->
+    </div>
+
   </section>
+  <center class="text-white">
+    <h3>"Todos los derechos para todas las personas."</h3>
+    <footer style="background-color: #2958a6;">
+      <h5 class="p-3 text-white text-bold">
+        G-20000238-7
+      </h5>
+    </footer>
+  </center>
 </template>
 
 
@@ -62,7 +67,8 @@ export default {
       bloodgroup: '',
       cargo: '',
       entrydate: '',
-      employee: null
+      employee: null,
+      image: ''
     };
   },
   mounted() {
@@ -103,13 +109,17 @@ export default {
           this.bloodgroup = this.employee.bloodgroup;
           this.cargo = this.employee.position;
           this.entrydate = this.employee.entrydate;
+          this.image = (this.employee.url === undefined || this.employee.url === '')
+            ? require('@/assets/img/placeholder-profile.jpg')
+            : this.employee.url;
+          console.log(this.image);
           // Operación exitosa
-        Swal.fire({
-          icon: 'success',
-          title: '¡Empleado encontrado!',
-          showConfirmButton: false,
-          timer: 1500,
-        });
+          Swal.fire({
+            icon: 'success',
+            title: '¡Empleado encontrado!',
+            showConfirmButton: false,
+            timer: 1500,
+          });
         } else {
           this.employee = null
           Swal.fire({
@@ -118,14 +128,14 @@ export default {
             text: "El número de cédula no corresponde con algún empleado.",
           });
         }
-/* 
-        // Operación exitosa
-        Swal.fire({
-          icon: 'success',
-          title: '¡Sesión iniciada!',
-          showConfirmButton: false,
-          timer: 1500,
-        }); */
+        /* 
+                // Operación exitosa
+                Swal.fire({
+                  icon: 'success',
+                  title: '¡Sesión iniciada!',
+                  showConfirmButton: false,
+                  timer: 1500,
+                }); */
       } catch (error) {
         // Operación fallida
         Swal.fire({
@@ -135,7 +145,19 @@ export default {
         });
       }
     },
+    formatDate(yyyy_mm_dd) {
+  const parts = yyyy_mm_dd.split('-');
+  if (parts.length === 3) {
+    const yyyy = parts[0];
+    const mm = parts[1];
+    const dd = parts[2];
+    return `${dd}-${mm}-${yyyy}`;
+  } else {
+    return "Formato de fecha incorrecto";
+  }
+},
   },
+  
 };
 </script>
 <style>
@@ -153,5 +175,18 @@ export default {
 
 body {
   background-color: white;
+}
+
+.img-perfil {
+  border-radius: 50%;
+  border: 5px solid #2958a6;
+  max-width: 200px;
+  max-height: 200px;
+  height: 25vw;
+  height: 25vw;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+
 }
 </style>

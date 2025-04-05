@@ -33,13 +33,13 @@
                   <td>{{ index + 1 }}
                   </td>
                   <td class="text-center"><img class="bg-soft-primary rounded img-fluid avatar-40 me-3"
-                      :src="require('@/assets/images/avatars/01.png')" alt="profile" loading="lazy" /></td>
+                      :src="item.url? item.url :require('@/assets/images/avatars/01.png')" alt="profile" loading="lazy" /></td>
                   <td>{{ item.name }}</td>
                   <td>{{ item.uid }}</td>
                   <td>{{ item.department }}</td>
                   <td>{{ item.position }}</td>
                   <td>{{ item.bloodgroup }}</td>
-                  <td>{{ item.entrydate }}</td>
+                  <td>{{ formatDate(item.entrydate)}}</td>
                   <!-- <td>{{ item.fileslocation }}</td> -->
                   <td>
                     <div class="flex align-items-center list-user-action">
@@ -92,8 +92,8 @@
             <form @submit.prevent="handleSubmitCrear">
               <b-form-group>
                 <label for="input-101" class="form-label">Nombre</label>
-                <b-form-input id="input-101" type="text" placeholder="Nombre del empleado"
-                  v-model="name" required></b-form-input>
+                <b-form-input id="input-101" type="text" placeholder="Nombre del empleado" v-model="name"
+                  required></b-form-input>
               </b-form-group>
               <b-form-group>
                 <label for="input-105" class="form-label">Cédula de Identidad</label>
@@ -105,17 +105,31 @@
               </b-form-group>
               <b-form-group>
                 <label for="input-101" class="form-label">Cargo</label>
-                <b-form-input id="input-101" type="text" placeholder="Cargo del empleado"
-                  v-model="position" required></b-form-input>
+                <b-form-input id="input-101" type="text" placeholder="Cargo del empleado" v-model="position"
+                  required></b-form-input>
               </b-form-group>
               <b-form-group>
                 <label for="input-101" class="form-label">Grupo Sanguíneo</label>
-                <b-form-input id="input-101" type="text" placeholder="Grupo sanguíneo del empleado"
-                  v-model="bloodgroup" required></b-form-input>
+                <b-form-input id="input-101" type="text" placeholder="Grupo sanguíneo del empleado" v-model="bloodgroup"
+                  required></b-form-input>
               </b-form-group>
               <b-form-group>
                 <label for="input-107" class="form-label">Fecha de Ingreso </label>
-                <b-form-input id="input-107" type="date" placeholder="2019-12-18" v-model="entrydate" required></b-form-input>
+                <b-form-input id="input-107" type="date" placeholder="2019-12-18" v-model="entrydate"
+                  required></b-form-input>
+              </b-form-group>
+              <b-form-group>
+                <label for="input-101" class="form-label">Foto tipo carnet</label>
+                <div class="form-group mb-0">
+                  <input type="file" class="form-control" aria-label="file example" required=""
+                    @change="handleFileChange" />
+                </div>
+              </b-form-group>
+              <b-form-group>
+              <div v-if="previewImage" class="mt-3">
+                <label class="form-label">Vista previa:</label>
+                <img :src="previewImage" alt="Vista previa de la imagen" style="max-width: 200px; max-height: 200px;">
+              </div>
               </b-form-group>
               <!-- <b-form-group>
                 <label for="input-101" class="form-label">Ubicación de los expedientes</label>
@@ -150,26 +164,43 @@
               </b-form-group>
               <b-form-group>
                 <label for="input-105" class="form-label">Cédula de Identidad</label>
-                <b-form-input id="input-105" type="text" placeholder="12345678" v-model="itemToUpdate.uid" disabled></b-form-input>
+                <b-form-input id="input-105" type="text" placeholder="12345678" v-model="itemToUpdate.uid"
+                  disabled></b-form-input>
               </b-form-group>
               <b-form-group>
                 <label for="input-1303" class="form-label">Seleccione Departamento</label>
-                <b-form-select v-model="itemToUpdate.department" :options="listDepartment.value" id="input-1303" required />
+                <b-form-select v-model="itemToUpdate.department" :options="listDepartment.value" id="input-1303"
+                  required />
               </b-form-group>
               <b-form-group>
                 <label for="input-101" class="form-label">Cargo</label>
                 <b-form-input id="input-101" type="text" placeholder="Cargo del empleado"
                   v-model="itemToUpdate.position" required></b-form-input>
               </b-form-group>
-              
+
               <b-form-group>
                 <label for="input-101" class="form-label">Grupo Sanguíneo</label>
-                <b-form-input id="input-101" type="text" placeholder="Grupo sanguíneo del empleado"
-                  v-model="bloodgroup" required></b-form-input>
+                <b-form-input id="input-101" type="text" placeholder="Grupo sanguíneo del empleado" v-model="itemToUpdate.bloodgroup"
+                  required></b-form-input>
               </b-form-group>
               <b-form-group>
                 <label for="input-107" class="form-label">Fecha de Ingreso </label>
-                <b-form-input id="input-107" type="date" placeholder="2019-12-18" v-model="itemToUpdate.entrydate" required></b-form-input>
+                <b-form-input id="input-107" type="date" placeholder="18-12-2019" v-model="itemToUpdate.entrydate" locale="es"
+                  required></b-form-input>
+              </b-form-group>
+              
+              <b-form-group>
+                <label for="input-101" class="form-label">Foto tipo carnet</label>
+                <div class="form-group mb-0">
+                  <input type="file" class="form-control" aria-label="file example"
+                    @change="handleFileChange" />
+                </div>
+              </b-form-group>
+              <b-form-group>
+              <div class="mt-3 d-flex justify-content-around align-items-center">
+                <label class="form-label">Vista previa:</label>
+                <img :src="previewImage?previewImage:itemToUpdate.url?itemToUpdate.url:require('@/assets/images/avatars/01.png')" alt="Vista previa de la imagen" style="max-width: 200px; max-height: 200px;">
+              </div>
               </b-form-group>
               <!-- <b-form-group>
                 <label for="input-101" class="form-label">Ubicación de los expedientes</label>
@@ -191,6 +222,7 @@
 <script>
 import Employee from '@/models/employee';
 import dbService from '@/services/dbService';
+import storageService from '@/services/storageService';
 
 const Swal = require('sweetalert2')
 import { ref } from 'vue';
@@ -207,6 +239,8 @@ export default {
     const entrydate = ref('');
     const bloodgroup = ref('');
     const fileslocation = ref('');
+
+    const previewImage = ref(null);
 
 
 
@@ -225,6 +259,7 @@ export default {
       entrydate,
       bloodgroup,
       fileslocation,
+      previewImage,
       //isLoading,
     };
   },
@@ -237,9 +272,9 @@ export default {
     async fetchData() {
       let departments = await dbService.getDepartments();
       this.listDepartment.value = departments.map(dep => ({
-          value: dep.id,
-          text: dep.name
-        }));
+        value: dep.id,
+        text: dep.name
+      }));
       this.tableData.value = await dbService.getEmployees();
       this.limpiarVariables();
     },
@@ -252,6 +287,8 @@ export default {
       console.log('entrydate:', this.entrydate);
       console.log('bloodgroup:', this.bloodgroup);
       console.log('fileslocation:', this.fileslocation);
+
+      
       let employee = new Employee({
         uid: String(this.ci),
         name: this.name,
@@ -260,7 +297,23 @@ export default {
         entrydate: this.entrydate,
         bloodgroup: this.bloodgroup,
         fileslocation: "n/a",//this.fileslocation,
+        url: '',
+        href: `profile/${String(this.ci)}/perfil.jpg`,
       });
+
+
+      Swal.fire({
+        title: 'Creando Usuario...',
+        html: 'Por favor, espere...',
+        allowOutsideClick: false,
+        showConfirmButton: false,
+        willOpen: () => {
+          Swal.showLoading();
+        },
+      });
+
+      employee.url = await storageService.uploadImagProfile(this.selectedFile, employee.toJson())
+     
       let employeeCreated = await dbService.addEmployee(employee.toJson())
       console.log('employeeCreated:', employeeCreated);
       if (employeeCreated) {
@@ -287,7 +340,17 @@ export default {
       const boton = document.getElementById('closeEdit');
       boton.click();
       console.log('this.itemToUpdate:', this.itemToUpdate);
-      let employeeCreated = await dbService.updateEmployee(this.itemToUpdate)
+
+      if (this.previewImage) {
+      this.itemToUpdate.url = this.previewImage;
+      }
+      if (this.itemToUpdate.url == null) {
+      this.itemToUpdate.url = '';
+      }
+      this.itemToUpdate.href = `profile/${String(this.ci)}/perfil.jpg`,
+      
+      this.itemToUpdate.url = await storageService.uploadImagProfile(this.selectedFile, this.itemToUpdate.toJson())
+      let employeeCreated = await dbService.updateEmployee(this.itemToUpdate.toJson())
       console.log('employeeCreated:', employeeCreated);
       if (employeeCreated) {
         Swal.fire({
@@ -344,12 +407,46 @@ export default {
     },
     limpiarVariables() {
       this.name = '';
+      this.department = '';
+      this.position = '';
+      this.entrydate = '';
+      this.bloodgroup = '';
+      this.image = '';
+      this.previewImage = null;
     },
+    handleFileChange(event) {
+      this.selectedFile = event.target.files[0];
+      console.log('this.selectedFile ', this.selectedFile);
+      const file = event.target.files[0];
+      if (file) {
+        const reader = new FileReader();
+        reader.onloadend = () => {
+          this.previewImage = reader.result; // No necesitas .value aquí
+        };
+        reader.readAsDataURL(file);
+      } else {
+        this.previewImage = null;
+      }
+    },
+
     setUpdate(item) {
       console.log(item);
-      this.itemToUpdate = item;
+      this.itemToUpdate = new Employee(item);
+      
+      this.previewImage = item.url;
 
-    }
+    },
+    formatDate(yyyy_mm_dd) {
+  const parts = yyyy_mm_dd.split('-');
+  if (parts.length === 3) {
+    const yyyy = parts[0];
+    const mm = parts[1];
+    const dd = parts[2];
+    return `${dd}-${mm}-${yyyy}`;
+  } else {
+    return "Formato de fecha incorrecto";
+  }
+}
   },
 }
 </script>
