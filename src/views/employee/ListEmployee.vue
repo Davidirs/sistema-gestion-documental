@@ -339,7 +339,8 @@ export default {
       //para  cerrar el modal
       const boton = document.getElementById('closeEdit');
       boton.click();
-      console.log('this.itemToUpdate:', this.itemToUpdate);
+      console.log('this.itemToUpdate:');
+      console.log(this.itemToUpdate);
 
       if (this.previewImage) {
       this.itemToUpdate.url = this.previewImage;
@@ -347,7 +348,7 @@ export default {
       if (this.itemToUpdate.url == null) {
       this.itemToUpdate.url = '';
       }
-      this.itemToUpdate.href = `profile/${String(this.ci)}/perfil.jpg`,
+      this.itemToUpdate.href = `profile/${String(this.itemToUpdate.uid)}/perfil.jpg`,
       
       this.itemToUpdate.url = await storageService.uploadImagProfile(this.selectedFile, this.itemToUpdate.toJson())
       let employeeCreated = await dbService.updateEmployee(this.itemToUpdate.toJson())
@@ -413,6 +414,7 @@ export default {
       this.bloodgroup = '';
       this.image = '';
       this.previewImage = null;
+      this.fileslocation = '';
     },
     handleFileChange(event) {
       this.selectedFile = event.target.files[0];

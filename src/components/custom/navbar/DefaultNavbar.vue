@@ -273,10 +273,10 @@ export default {
       window.removeEventListener('scroll', onscroll())
     })
 
-    const logout = () => {
+    const logout = async () => {
       console.log('presionando boton');
 
-      authService.signOut();
+      await authService.signOut();
       
       router.replace('/auth/login');
     }

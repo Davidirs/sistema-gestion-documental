@@ -16,8 +16,8 @@
           <h1 class="my-4 d-none d-md-block">
             <span>{{ appName }}</span>
           </h1>
-          <h4 class="text-white mb-5">"Todos los Derechos, <br>
-            <b> Para todas las personas</b>"
+          <h4 class="text-white mb-5"><i>"Todos los Derechos, <br>
+            <b> Para todas las personas</b>"</i>
           </h4>
 
         </div>
