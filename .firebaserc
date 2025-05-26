@@ -1,7 +1,8 @@
 {
   "projects": {
     "default": "dsec-cruz-paredes",
-    "dsec": "dsec-cruz-paredes"
+    "dsec": "dsec-cruz-paredes",
+    "sistemadegestiondocumental": "sistema-gestion-documental"
   },
   "targets": {},
   "etags": {}

@@ -100,7 +100,9 @@ export default {
         this.employee = await dbService.getEmployeeByCI(String(this.ci)
         )
 
-        if (this.employee && this.employee.department == 'Dirección de seguridad ciudadana') {
+        if (this.employee /* && this.employee.department == 'Dirección de seguridad ciudadana' */
+          
+        ) {
           console.log('Empleado encontrado');
           console.log(this.employee);
           this.name = this.employee.name;
