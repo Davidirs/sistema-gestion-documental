@@ -1,6 +1,6 @@
 {
   "projects": {
-    "default": "dsec-cruz-paredes",
+    "default": "sistema-gestion-documental",
     "dsec": "dsec-cruz-paredes",
     "sistemadegestiondocumental": "sistema-gestion-documental",
     "sistemaweb": "sistema-gestion-documental",

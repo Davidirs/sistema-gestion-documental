@@ -13,9 +13,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - run: "           export VUE_APP_API_KEY=${{ secrets.VUE_APP_API_KEY }}"
+      - run: npm ci && npm run build
       - uses: FirebaseExtended/action-hosting-deploy@v0
         with:
           repoToken: ${{ secrets.GITHUB_TOKEN }}
-          firebaseServiceAccount: ${{ secrets.FIREBASE_SERVICE_ACCOUNT_DSEC_CRUZ_PAREDES }}
-          projectId: dsec-cruz-paredes
+          firebaseServiceAccount: ${{ secrets.FIREBASE_SERVICE_ACCOUNT_SISTEMA_GESTION_DOCUMENTAL }}
+          projectId: sistema-gestion-documental
