@@ -15,13 +15,6 @@ const firebaseConfig = {
   appId: process.env.VUE_APP_APP_ID,
 };
 
-console.log(firebaseConfig.apiKey);
-console.log(firebaseConfig.authDomain);
-console.log(firebaseConfig.projectId);
-console.log(firebaseConfig.storageBucket);
-console.log(firebaseConfig.messagingSenderId);
-console.log(firebaseConfig.appId);
-
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 /* // Export the initialized Firebase app (optional)

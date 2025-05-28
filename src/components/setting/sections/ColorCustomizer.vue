@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="d-flex align-items-center justify-content-between">
-      <h6 class="mt-4 mb-3">Color Customizer</h6>
+      <h6 class="mt-4 mb-3">Personalizar Color</h6>
       <div class="d-flex align-items-center">
         <a href="#custom-color" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="custom-color">Custom</a>
         <div data-setting="radio">
@@ -16,11 +16,11 @@
     </div>
     <div class="collapse" id="custom-color">
       <div class="form-group d-flex justify-content-between align-items-center">
-        <label for="custom-primary-color">Primary</label>
+        <label for="custom-primary-color">Primario</label>
         <input name="primary" type="color" @input="onColorUpdate" id="custom-primary-color" :value="themeColor.colors['--{{prefix}}primary']" />
       </div>
       <div class="form-group d-flex d-flex justify-content-between align-items-center">
-        <label for="custom-info-color">Secondary</label>
+        <label for="custom-info-color">Secondario</label>
         <input name="info" type="color" @input="onColorUpdate" id="custom-info-color" :value="themeColor.colors['--{{prefix}}info']" />
       </div>
     </div>

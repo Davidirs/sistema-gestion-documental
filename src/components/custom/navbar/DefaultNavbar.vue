@@ -209,8 +209,10 @@
               <img src="@/assets/images/avatars/avtar_3.png" alt="User-Profile"
                 class="theme-color-pink-img img-fluid avatar avatar-50 avatar-rounded" />
               <div class="caption ms-3 d-none d-md-block">
-                <h6 class="mb-0 caption-title">Alcaldía</h6>
-                <p class="mb-0 caption-sub-title">Administrator</p>
+                <h6 class="mb-0 caption-title" v-if="user">{{user.displayName}}</h6>
+                <h6 class="mb-0 caption-title" v-else>Alcaldía</h6>
+                <p class="mb-0 caption-sub-title" v-if="user">{{user.rol}}</p>
+                <p class="mb-0 caption-sub-title" v-else>Administrator</p>
               </div>
             </a>
             <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
@@ -234,6 +236,7 @@ import { useStore } from 'vuex'
 
 import router from '@/router';
 import authService from '@/services/authService'
+import dbService from '@/services/dbService'
 export default {
   components: {},
   props: {
@@ -262,11 +265,16 @@ export default {
         }
       }
     }
+    
+    const user = ref(null);
 
     const carts = computed(() => store.getters.carts)
 
-    onMounted(() => {
+     onMounted(async() => {
       window.addEventListener('scroll', onscroll())
+      const uid = localStorage.getItem('user');
+      user.value = await dbService.getUser(uid);
+      console.log('user', user.value);
     })
 
     onUnmounted(() => {
@@ -285,7 +293,7 @@ export default {
       isHidden,
       carts,
       emit,
-      logout
+      logout,user
     }
 
 

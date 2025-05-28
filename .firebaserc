@@ -2,7 +2,9 @@
   "projects": {
     "default": "dsec-cruz-paredes",
     "dsec": "dsec-cruz-paredes",
-    "sistemadegestiondocumental": "sistema-gestion-documental"
+    "sistemadegestiondocumental": "sistema-gestion-documental",
+    "sistemaweb": "sistema-gestion-documental",
+    "sistema": "sistema-gestion-documental"
   },
   "targets": {},
   "etags": {}

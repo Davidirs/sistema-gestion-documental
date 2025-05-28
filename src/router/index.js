@@ -2,18 +2,18 @@ import { createRouter, createWebHistory } from 'vue-router'
 import { auth } from "@/firebase";
 // Design System Routes
 const designSystemChildRoutes = (prefix) => [
-  /* {
+  {
     path: '',
     name: prefix + '.main',
     meta: { auth: true, name: 'Design System' },
     component: () => import('@/views/design-system/IndexPage.vue')
-  },  */ 
-  {
+  },  
+  /* {
     path: '',
     name: prefix + '.login',
     meta: { auth: false, name: 'Login' },
     component: () => import('@/views/auth/default/SignIn.vue')
-  },
+  }, */
   {
     path: '',
     name: prefix + '.main',
@@ -171,6 +171,12 @@ const defaultChildRoutes = (prefix) => [
     name: prefix + '.user-profile',
     meta: { auth: true, name: 'User Add', isBanner: true },
     component: () => import('@/views/user/ProfilePage.vue')
+  },
+  {
+    path: '/perfil',
+    name: prefix + '.perfil',
+    meta: { auth: true, name: 'User Add', isBanner: true },
+    component: () => import('@/views/user/PerfilPage.vue')
   },
   {
     path: '/privacy-setting',

@@ -77,7 +77,7 @@
 
 import router from '@/router';
 import authService from '@/services/authService'
-import dbService from '@/services/dbService'
+//import dbService from '@/services/dbService'
 import Swal from 'sweetalert2';
 export default {
 
@@ -110,7 +110,8 @@ export default {
 
         let userCredential = await authService.signIn(this.email, this.password)
 
-        await dbService.addUser(userCredential.user);
+        //await dbService.addUser(userCredential.user);
+        localStorage.setItem('user', userCredential.user.uid);
         console.log('Login exitoso');
         //router.replace('/dashboard');
         router.replace('/empleados');

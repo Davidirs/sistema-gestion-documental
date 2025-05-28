@@ -1,7 +1,7 @@
 <template>
   <!--Logo start-->
   <div class="logo-main">
-    <img src="@/assets/img/dsec.jpg" alt="" width="50">
+    <img src="@/assets/img/logo250.png" alt="" width="50">
   </div>
   <!--Logo End-->
 </template>

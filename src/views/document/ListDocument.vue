@@ -32,7 +32,7 @@
                 </tr>
               </thead>
 
-              <tbody>
+              <tbody >
                 <tr v-for="(item, index) in tableData.value" :key="index">
                   <td>{{ index + 1 }}
                   </td>
@@ -232,13 +232,16 @@ export default {
 
   methods: {
     async fetchData() {
-console.log(this.selectedEmployee.value)
+console.log('fetchData'+this.selectedEmployee.value)
       let employee = await dbService.getEmployees();
       this.listEmployee.value = employee.map(dep => ({
         value: dep.uid,
         text: dep.name
       }));
       this.tableData.value = await dbService.getAllDocuments();
+      /* let data = await dbService.getAllDocuments();
+      console.log('data:', data); */
+      
       /* let departments = await dbService.getEmployees();
       this.listEmployee.value = departments.map(dep => ({
           value: dep.id,
@@ -353,7 +356,7 @@ if(this.selectedFile){
       console.log(this.selectedFile );
     },
     setUpdate(item) {
-      console.log(item);
+      console.log('setUpdate'+item);
       this.itemToUpdate = item;
 
     },

@@ -1,0 +1,51 @@
+[debug] [2025-05-27T00:04:22.264Z] ----------------------------------------------------------------------
+[debug] [2025-05-27T00:04:22.272Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\dirs\AppData\Roaming\npm\node_modules\firebase-tools\lib\bin\firebase.js init
+[debug] [2025-05-27T00:04:22.273Z] CLI Version:   14.4.0
+[debug] [2025-05-27T00:04:22.273Z] Platform:      win32
+[debug] [2025-05-27T00:04:22.273Z] Node Version:  v22.15.0
+[debug] [2025-05-27T00:04:22.274Z] Time:          Mon May 26 2025 20:04:22 GMT-0400 (hora de Venezuela)
+[debug] [2025-05-27T00:04:22.274Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2025-05-27T00:04:22.914Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2025-05-27T00:04:22.918Z] > authorizing via signed-in user (dirsdeveloper@gmail.com)
+[info] 
+     ######## #### ########  ######## ########     ###     ######  ########
+     ##        ##  ##     ## ##       ##     ##  ##   ##  ##       ##
+     ######    ##  ########  ######   ########  #########  ######  ######
+     ##        ##  ##    ##  ##       ##     ## ##     ##       ## ##
+     ##       #### ##     ## ######## ########  ##     ##  ######  ########
+
+You're about to initialize a Firebase project in this directory:
+
+  D:\Documents\Proyectos\alcaldia-cruz-paredes
+
+Before we get started, keep in mind:
+
+  * You are initializing within an existing Firebase project directory
+
+[info] 
+=== Project Setup
+[info] 
+[info] First, let's associate this project directory with a Firebase project.
+[info] You can create multiple project aliases by running firebase use --add, 
+[info] but for now we'll just set up a default project.
+[info] 
+[debug] [2025-05-27T00:04:32.436Z] Using project from CLI flag: sistema-gestion-documental
+[debug] [2025-05-27T00:04:32.441Z] Checked if tokens are valid: true, expires at: 1748306235481
+[debug] [2025-05-27T00:04:32.442Z] Checked if tokens are valid: true, expires at: 1748306235481
+[debug] [2025-05-27T00:04:32.446Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/sistema-gestion-documental [none]
+[debug] [2025-05-27T00:04:32.972Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/sistema-gestion-documental 200
+[debug] [2025-05-27T00:04:32.972Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/sistema-gestion-documental {"projectId":"sistema-gestion-documental","projectNumber":"719389423609","displayName":"sistema-gestion-documental","name":"projects/sistema-gestion-documental","resources":{"hostingSite":"sistema-gestion-documental","locationId":"us-central"},"state":"ACTIVE","etag":"1_034e0301-9db6-4f04-8dd7-c135dce9af5e"}
+[info] i  Using project sistema-gestion-documental (sistema-gestion-documental) 
+[info] 
+=== Hosting Setup
+[debug] [2025-05-27T00:04:32.987Z] Checked if tokens are valid: true, expires at: 1748306235481
+[debug] [2025-05-27T00:04:32.987Z] Checked if tokens are valid: true, expires at: 1748306235481
+[debug] [2025-05-27T00:04:32.988Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/sistema-gestion-documental [none]
+[debug] [2025-05-27T00:04:33.174Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/sistema-gestion-documental 200
+[debug] [2025-05-27T00:04:33.175Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/sistema-gestion-documental {"projectId":"sistema-gestion-documental","projectNumber":"719389423609","displayName":"sistema-gestion-documental","name":"projects/sistema-gestion-documental","resources":{"hostingSite":"sistema-gestion-documental","locationId":"us-central"},"state":"ACTIVE","etag":"1_034e0301-9db6-4f04-8dd7-c135dce9af5e"}
+[info] 
+[info] Your public directory is the folder (relative to your project directory) that
+[info] will contain Hosting assets to be uploaded with firebase deploy. If you
+[info] have a build process for your assets, use your build's output directory.
+[info] 

@@ -8,7 +8,7 @@
     </a>
   </div> -->
   <!-- Setting offcanvas start here -->
-  <b-offcanvas v-model="show" :backdrop="true" title="Live Customizer" :placement="themeSchemeDirection !== 'ltr' ? 'start' : 'end'" class="live-customizer" id="live-customizer" :body-scrolling="true">
+  <b-offcanvas v-model="show" :backdrop="true" title="Personalizador en vivo" :placement="themeSchemeDirection !== 'ltr' ? 'start' : 'end'" class="live-customizer" id="live-customizer" :body-scrolling="true">
     <div class="row">
       <div class="col-lg-12">
         <div>

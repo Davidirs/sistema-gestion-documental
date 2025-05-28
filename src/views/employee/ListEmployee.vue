@@ -271,11 +271,13 @@ export default {
   methods: {
     async fetchData() {
       let departments = await dbService.getDepartments();
+      console.log('departments:', departments);
       this.listDepartment.value = departments.map(dep => ({
         value: dep.id,
         text: dep.name
       }));
       this.tableData.value = await dbService.getEmployees();
+      console.log('tableData:', this.tableData.value);
       this.limpiarVariables();
     },
 

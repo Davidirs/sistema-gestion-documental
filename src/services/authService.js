@@ -1,6 +1,6 @@
 
-import { auth,signOut } from '@/firebase'
-import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from "firebase/auth";
+import { auth, signOut } from '@/firebase'
+import { createUserWithEmailAndPassword, signInWithEmailAndPassword, updatePassword } from "firebase/auth";
 
 
 export default {
@@ -22,7 +22,7 @@ export default {
   },
   async signIn(email, password) {
 
-    console.log('signIn');
+    console.log('signIn'+email + ' ' + password);
     let userCredential = await signInWithEmailAndPassword(auth, email, password)
       .catch((error) => {
         console.log(error.code);
@@ -38,8 +38,25 @@ export default {
   },
   async signOut() {
     console.log('signOut');
-    
+
     signOut(auth)
     // ...
+  },
+  async getCurrentUser() {
+    console.log('getCurrentUser ' + auth.currentUser);
+    return auth.currentUser;
+  },
+  async updatePassword(newPassword) {
+    console.log('actualizando contraseña');
+    const user = auth.currentUser;
+    updatePassword(user, newPassword).then(() => {
+      // Update successful.
+    }).catch((error) => {
+      // An error ocurred
+      console.error('Error al actualizar la contraseña:', error);
+      // ...
+    });
+
   }
+  
 };

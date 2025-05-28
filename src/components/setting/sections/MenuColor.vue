@@ -1,17 +1,17 @@
 <template>
-  <h6 class="mt-4 mb-3">Sidebar Color</h6>
+  <h6 class="mt-4 mb-3">Color de barra lateral</h6>
   <div class="d-grid gap-3 grid-cols-2 mb-4">
     <radio-input btn-name="sidebar_color" labelClass="d-block  gap-1" id="sidebar-white" :default-checked="sidebarcolor" value="sidebar-white" @onChange="updateRadio">
-      <span class="text-center">Default </span>
+      <span class="text-center">Predeterminado </span>
     </radio-input>
     <radio-input btn-name="sidebar_color" labelClass="d-block gap-1" id="sidebar-dark" :default-checked="sidebarcolor" value="sidebar-dark" @onChange="updateRadio">
-      <span> Dark </span>
+      <span> Obscuro </span>
     </radio-input>
     <radio-input btn-name="sidebar_color" labelClass="d-block  gap-1" id="sidebar-color" :default-checked="sidebarcolor" value="sidebar-color" @onChange="updateRadio">
       <span> Color </span>
     </radio-input>
     <radio-input btn-name="sidebar_color" labelClass="d-block  gap-1" :imgComponent="true" id="sidebar-transparent" :default-checked="sidebarcolor" value="sidebar-transparent" @onChange="updateRadio">
-      <span> Transparent </span>
+      <span> Transparente </span>
     </radio-input>
   </div>
 </template>

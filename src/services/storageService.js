@@ -133,6 +133,49 @@ export default {
       }
     );
     return downloadURL;
+  },
+  async uploadImagAdmin(selectedFile, employee, userdata) {
+    if (!selectedFile) {
+      return;
+    }
+
+    const downloadURL = false;
+    const storage = getStorage();
+    const storageRef = ref(storage, employee.href);
+    console.log('employee.href:', employee.href);
+    console.log('storageRef:', storageRef);
+    const uploadTask = uploadBytesResumable(storageRef, selectedFile);
+
+    uploadTask.on('state_changed',
+      (snapshot) => {
+        const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+        //uploadProgress.value = progress; 
+        console.log(progress);
+
+      },
+      (error) => {
+        console.error('Error al subir la imagen:', error);
+        Swal.fire({
+          icon: "error",
+          title: "Ups...",
+          text: "Error al subir la imagen!",
+        });
+      },
+      () => {
+        getDownloadURL(uploadTask.snapshot.ref).then(async (downloadURL) => {
+          //downloadURL.value = downloadURL; 
+          console.log('URL de descarga:', downloadURL);
+          // Aquí puedes hacer algo con la URL de descarga, 
+          // como guardarla en la base de datos 
+          userdata.photoURL = downloadURL;
+          
+         await dbService.addUser(userdata)
+          
+          console.log('Admin actualizado');
+        });
+      }
+    );
+    return downloadURL;
   }
 
 }

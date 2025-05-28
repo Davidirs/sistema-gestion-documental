@@ -2,13 +2,14 @@
   <b-card no-body>
     <b-card-header>
       <div class="header-title">
-        <h4 class="card-title">Empleado</h4>
+        <h4 class="card-title">{{rol ??"Empleado"}}</h4>
       </div>
     </b-card-header>
     <b-card-body>
       <div class="text-center d-flex justify-content-center align-items-center">
         <div>
-          <img src="@/assets/images/avatars/01.png" alt="profile-img" class="rounded-pill avatar-80 img-fluid" loading="lazy" />
+          <img v-if="photoURL" :src="photoURL" alt="profile-img" class="rounded-pill avatar-80 img-fluid" loading="lazy" />
+          <img v-else src="@/assets/images/avatars/01.png" alt="profile-img" class="rounded-pill avatar-80 img-fluid" loading="lazy" />
         </div>
         <div class="mt-2 d-flex flex-column">
           <h4 class="d-inline-block">{{ name }}</h4>
@@ -67,7 +68,9 @@ export default {
     department: { type: String, required: true },
     position: { type: String, required: true },
     entrydate: { type: String, required: true },
-    fileslocation: { type: String, required: true }
+    fileslocation: { type: String, required: true },
+    rol: { type: String },
+    photoURL: { type: String}
   }
 }
 </script>

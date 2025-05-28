@@ -21,6 +21,16 @@ export default {
       new User(user).toJson()
     );
   },
+  async getUser(uid) {
+    // Get a user from collection "users"
+    const userRef = doc(db, "users", uid);
+    const userSnap = await getDoc(userRef);
+    if (userSnap.exists()) {
+      return userSnap.data();
+    } else {
+      return null;
+    }
+  },
 
   //Direcciones
   async getDepartments() {
@@ -97,6 +107,9 @@ export default {
   async addEmployee(employee) {
     // Create a new document reference with a generated ID
     //const newDepRef = doc(collection(db, "employees"));
+    if (!employee.uid) {
+      return;
+    }
     const newDepRef = doc(db, "employees", employee.uid);
     // Assign the generated ID to the employee object's uid property
     //employee.uid = newDepRef.id;

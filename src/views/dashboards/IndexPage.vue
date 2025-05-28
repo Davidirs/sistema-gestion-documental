@@ -44,7 +44,7 @@
         </div>
       </div>
     </div>
-    <div class="col-md-12 col-lg-8">
+   <!--  <div class="col-md-12 col-lg-8">
       <div class="row">
         <div class="col-md-12" data-aos="fade-up" data-aos-delay="800">
           <div class="card aos-init aos-animate">
@@ -515,7 +515,7 @@
           </div>
         </div>
       </div>
-    </div>
+    </div> -->
   </div>
 </template>
 
