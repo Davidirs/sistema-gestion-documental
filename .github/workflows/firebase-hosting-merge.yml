@@ -23,6 +23,6 @@ jobs:
       - uses: FirebaseExtended/action-hosting-deploy@v0
         with:
           repoToken: ${{ secrets.GITHUB_TOKEN }}
-          firebaseServiceAccount: ${{ secrets.FIREBASE_SERVICE_ACCOUNT_DSEC_CRUZ_PAREDES }}
+          firebaseServiceAccount: ${{ secrets.FIREBASE_SERVICE_ACCOUNT_SISTEMA_GESTION_DOCUMENTAL }}
           channelId: live
-          projectId: dsec-cruz-paredes
+          projectId: sistema-gestion-documental
