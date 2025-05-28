@@ -212,16 +212,16 @@
                 <h6 class="mb-0 caption-title" v-if="user">{{user.displayName}}</h6>
                 <h6 class="mb-0 caption-title" v-else>Alcaldía</h6>
                 <p class="mb-0 caption-sub-title" v-if="user">{{user.rol}}</p>
-                <p class="mb-0 caption-sub-title" v-else>Administrator</p>
+                <p class="mb-0 caption-sub-title" v-else>Administrador</p>
               </div>
             </a>
             <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-              <!-- <li><router-link class="dropdown-item" :to="{ name: 'default.user-profile' }">Perfil</router-link></li>
-              <li><router-link class="dropdown-item" :to="{ name: 'default.user-privacy-setting' }">Privacy
-                  Setting</router-link></li>
+              <li><router-link class="dropdown-item" :to="{ name: 'default.perfil' }">Perfil</router-link></li>
+              <!-- <li><router-link class="dropdown-item" :to="{ name: 'default.user-privacy-setting' }">Privacy
+                  Setting</router-link></li> -->
               <li>
                 <hr class="dropdown-divider" />
-              </li> -->
+              </li>
               <li><button class="dropdown-item" @click="logout">Cerrar sesión</button></li>
             </ul>
           </li>
