@@ -114,7 +114,7 @@ export default {
         localStorage.setItem('user', userCredential.user.uid);
         console.log('Login exitoso');
         //router.replace('/dashboard');
-        router.replace('/empleados');
+        router.replace('/dashboard');
 
         // Operación exitosa
         Swal.fire({

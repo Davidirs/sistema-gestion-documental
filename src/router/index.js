@@ -461,7 +461,7 @@ router.beforeEach((to, from, next) => {
   } else if (user && to.path === "/auth/login") {
     console.log('Ya autenticado, redirigiendo a dashboard');
     //next("/dashboard"); // Si ya está autenticado y va a login, lo mandamos a dashboard
-    next("/empleados"); // Si ya está autenticado y va a login, lo mandamos a dashboard
+    next("/dashboard"); // Si ya está autenticado y va a login, lo mandamos a dashboard
   } else {
     next(); // En cualquier otro caso, dejamos que continúe
   }

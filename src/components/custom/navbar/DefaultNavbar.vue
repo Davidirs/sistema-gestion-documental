@@ -196,6 +196,10 @@
           <li class="me-0 me-xl-2">
             <a class="nav-link py-0 d-flex align-items-center" href="#" id="navbarDropdown" role="button"
               data-bs-toggle="dropdown" aria-expanded="false">
+              <div>
+              <img v-if="user" :src="user.photoURL" alt="User-Profile"
+                class="theme-color-default-img img-fluid avatar avatar-50 avatar-rounded" />
+
               <img src="@/assets/images/avatars/01.png" alt="User-Profile"
                 class="theme-color-default-img img-fluid avatar avatar-50 avatar-rounded" />
               <img src="@/assets/images/avatars/avtar_1.png" alt="User-Profile"
@@ -208,6 +212,7 @@
                 class="theme-color-yellow-img img-fluid avatar avatar-50 avatar-rounded" />
               <img src="@/assets/images/avatars/avtar_3.png" alt="User-Profile"
                 class="theme-color-pink-img img-fluid avatar avatar-50 avatar-rounded" />
+</div>
               <div class="caption ms-3 d-none d-md-block">
                 <h6 class="mb-0 caption-title" v-if="user">{{user.displayName}}</h6>
                 <h6 class="mb-0 caption-title" v-else>Alcaldía</h6>
