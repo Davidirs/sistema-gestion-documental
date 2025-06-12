@@ -199,7 +199,8 @@
               <div>
               <img v-if="user" :src="user.photoURL" alt="User-Profile"
                 class="theme-color-default-img img-fluid avatar avatar-50 avatar-rounded" />
-
+                <div v-else>
+                  
               <img src="@/assets/images/avatars/01.png" alt="User-Profile"
                 class="theme-color-default-img img-fluid avatar avatar-50 avatar-rounded" />
               <img src="@/assets/images/avatars/avtar_1.png" alt="User-Profile"
@@ -212,6 +213,7 @@
                 class="theme-color-yellow-img img-fluid avatar avatar-50 avatar-rounded" />
               <img src="@/assets/images/avatars/avtar_3.png" alt="User-Profile"
                 class="theme-color-pink-img img-fluid avatar avatar-50 avatar-rounded" />
+                </div>
 </div>
               <div class="caption ms-3 d-none d-md-block">
                 <h6 class="mb-0 caption-title" v-if="user">{{user.displayName}}</h6>

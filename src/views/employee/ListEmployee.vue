@@ -29,9 +29,8 @@
               </thead>
 
               <tbody>
-                <tr v-for="(item, index) in tableData.value" :key="index">
-                  <td>{{ index + 1 }}
-                  </td>
+                <tr v-for="(item, index) in paginatedData" :key="item?.uid">
+  <td>{{ (currentPage - 1) * itemsPerPage + index + 1 }}</td>
                   <td class="text-center"><img class="bg-soft-primary rounded img-fluid avatar-40 me-3"
                       :src="item.url? item.url :require('@/assets/images/avatars/01.png')" alt="profile" loading="lazy" /></td>
                   <td>{{ item.name }}</td>
@@ -66,10 +65,27 @@
                   </td>
                 </tr>
               </tbody>
+             
             </table>
+             <nav class="mt-3">
+  <ul class="pagination justify-content-center">
+    <li class="page-item" :class="{ disabled: currentPage === 1 }">
+      <button class="page-link" @click="currentPage--" :disabled="currentPage === 1">Anterior</button>
+    </li>
+
+    <li class="page-item disabled">
+      <span class="page-link">Página {{ currentPage }} de {{ totalPages }}</span>
+    </li>
+
+    <li class="page-item" :class="{ disabled: currentPage === totalPages }">
+      <button class="page-link" @click="currentPage++" :disabled="currentPage === totalPages">Siguiente</button>
+    </li>
+  </ul>
+</nav>
             <div class="text-center">
-              <p>Si no hay empleados, por favor cree alguno.</p>
-            </div>
+  <p>Si no hay empleados, por favor cree alguno.</p>
+</div>
+            
           </div>
         </div>
       </div>
@@ -156,7 +172,7 @@
         </b-card-header>
         <div class="modal-body bg-blue200">
           <b-card-body>
-            <form @submit.prevent="handleSubmitEditar">
+            <form @submit.prevent="handleSubmitEditar" v-if="itemToUpdate">
               <b-form-group>
                 <label for="input-101" class="form-label">Nombre</label>
                 <b-form-input id="input-101" type="text" placeholder="Nombre del empleado" v-model="itemToUpdate.name"
@@ -219,238 +235,151 @@
   </b-card>
 </template>
 
-<script>
-import Employee from '@/models/employee';
-import dbService from '@/services/dbService';
-import storageService from '@/services/storageService';
+<script setup>
+import Employee from '@/models/employee'
+import dbService from '@/services/dbService'
+import storageService from '@/services/storageService'
+import { ref, computed, onMounted } from 'vue'
+import Swal from 'sweetalert2'
 
-const Swal = require('sweetalert2')
-import { ref } from 'vue';
+const tableData = ref([])
+const listDepartment = ref([])
+const currentPage = ref(1)
+const itemsPerPage = ref(10)
 
-export default {
-  setup() {
-    const tableData = ref([]);
-    const listDepartment = ref([]);
-    const itemToUpdate = ref([]);
-    const name = ref('');
-    const ci = ref('');
-    const department = ref('');
-    const position = ref('');
-    const entrydate = ref('');
-    const bloodgroup = ref('');
-    const fileslocation = ref('');
+const name = ref('')
+const ci = ref('')
+const department = ref('')
+const position = ref('')
+const entrydate = ref('')
+const bloodgroup = ref('')
+const fileslocation = ref('')
+const previewImage = ref(null)
+const selectedFile = ref(null)
+const itemToUpdate = ref(null)
 
-    const previewImage = ref(null);
+// Computed para paginación
+const paginatedData = computed(() => {
+  const start = (currentPage.value - 1) * itemsPerPage.value
+  const end = start + itemsPerPage.value
+  return tableData.value.slice(start, end)
+})
 
+const totalPages = computed(() =>
+  Math.ceil(tableData.value.length / itemsPerPage.value)
+)
 
+// Cargar datos iniciales
+const fetchData = async () => {
+  const departments = await dbService.getDepartments()
+  listDepartment.value = departments.map(dep => ({
+    value: dep.id,
+    text: dep.name,
+  }))
+  tableData.value = await dbService.getEmployees()
+  limpiarVariables()
+}
 
+// Crear empleado
+const handleSubmitCrear = async () => {
+  let employee = new Employee({
+    uid: String(ci.value),
+    name: name.value,
+    department: department.value,
+    position: position.value,
+    entrydate: entrydate.value,
+    bloodgroup: bloodgroup.value,
+    fileslocation: "n/a",
+    url: '',
+    href: `profile/${String(ci.value)}/perfil.jpg`,
+  })
 
+  Swal.fire({ title: 'Creando...', allowOutsideClick: false, showConfirmButton: false, willOpen: () => Swal.showLoading() })
 
-    //const isLoading = ref(false); // Optional loading state
+  employee.url = await storageService.uploadImagProfile(selectedFile.value, employee.toJson())
 
-    return {
-      tableData,
-      listDepartment,
-      itemToUpdate,
-      name,
-      ci,
-      department,
-      position,
-      entrydate,
-      bloodgroup,
-      fileslocation,
-      previewImage,
-      //isLoading,
-    };
-  },
+  const result = await dbService.addEmployee(employee.toJson())
 
-  created() {
-    this.fetchData();
-  },
-
-  methods: {
-    async fetchData() {
-      let departments = await dbService.getDepartments();
-      console.log('departments:', departments);
-      this.listDepartment.value = departments.map(dep => ({
-        value: dep.id,
-        text: dep.name
-      }));
-      this.tableData.value = await dbService.getEmployees();
-      console.log('tableData:', this.tableData.value);
-      this.limpiarVariables();
-    },
-
-    async handleSubmitCrear() {
-      console.log('Name:', this.name);
-      console.log('ci:', this.ci);
-      console.log('department:', this.department);
-      console.log('position:', this.position);
-      console.log('entrydate:', this.entrydate);
-      console.log('bloodgroup:', this.bloodgroup);
-      console.log('fileslocation:', this.fileslocation);
-
-      
-      let employee = new Employee({
-        uid: String(this.ci),
-        name: this.name,
-        department: this.department,
-        position: this.position,
-        entrydate: this.entrydate,
-        bloodgroup: this.bloodgroup,
-        fileslocation: "n/a",//this.fileslocation,
-        url: '',
-        href: `profile/${String(this.ci)}/perfil.jpg`,
-      });
-
-
-      Swal.fire({
-        title: 'Creando Usuario...',
-        html: 'Por favor, espere...',
-        allowOutsideClick: false,
-        showConfirmButton: false,
-        willOpen: () => {
-          Swal.showLoading();
-        },
-      });
-
-      employee.url = await storageService.uploadImagProfile(this.selectedFile, employee.toJson())
-     
-      let employeeCreated = await dbService.addEmployee(employee.toJson())
-      console.log('employeeCreated:', employeeCreated);
-      if (employeeCreated) {
-        Swal.fire({
-          icon: "success",
-          title: "Empleado creado!",
-          showConfirmButton: false,
-          timer: 1500
-        });
-        console.log('Empleado Creado');
-        this.fetchData();
-        this.limpiarVariables()
-      } else {
-        Swal.fire({
-          icon: "error",
-          title: "Ups...",
-          text: "Algo ha salido mal!",
-        });
-        console.log('Algo salió mal');
-      }
-    },
-    async handleSubmitEditar() {
-      //para  cerrar el modal
-      const boton = document.getElementById('closeEdit');
-      boton.click();
-      console.log('this.itemToUpdate:');
-      console.log(this.itemToUpdate);
-
-      if (this.previewImage) {
-      this.itemToUpdate.url = this.previewImage;
-      }
-      if (this.itemToUpdate.url == null) {
-      this.itemToUpdate.url = '';
-      }
-      this.itemToUpdate.href = `profile/${String(this.itemToUpdate.uid)}/perfil.jpg`,
-      
-      this.itemToUpdate.url = await storageService.uploadImagProfile(this.selectedFile, this.itemToUpdate.toJson())
-      let employeeCreated = await dbService.updateEmployee(this.itemToUpdate.toJson())
-      console.log('employeeCreated:', employeeCreated);
-      if (employeeCreated) {
-        Swal.fire({
-          icon: "success",
-          title: "Empleado actualizado!",
-          showConfirmButton: false,
-          timer: 1500
-        });
-        console.log('Empleado actualizado');
-        this.fetchData();
-        this.limpiarVariables();
-      } else {
-        Swal.fire({
-          icon: "error",
-          title: "Ups...",
-          text: "Algo ha salido mal!",
-        });
-        console.log('Algo salió mal');
-      }
-    },
-
-    async deleteEmployee(uid) {
-      Swal.fire({
-        title: "¿Estás Seguro?",
-        text: "No puedes revertir esto!",
-        icon: "warning",
-        showCancelButton: true,
-        confirmButtonColor: "#3085d6",
-        cancelButtonColor: "#d33",
-        confirmButtonText: "Si, Eliminarlo!"
-      }).then(async (result) => {
-        if (result.isConfirmed) {
-
-          let employeeDeleted = await dbService.deleteEmployee(uid);
-          if (employeeDeleted) {
-            Swal.fire({
-              icon: "success",
-              title: "Empleado eliminado!",
-              showConfirmButton: false,
-              timer: 1500
-            });
-            console.log('Empleado eliminado');
-            this.fetchData();
-          } else {
-            Swal.fire({
-              icon: "error",
-              title: "Ups...",
-              text: "Algo ha salido mal!",
-            });
-            console.log('Algo salió mal');
-          }
-        }
-      });
-    },
-    limpiarVariables() {
-      this.name = '';
-      this.department = '';
-      this.position = '';
-      this.entrydate = '';
-      this.bloodgroup = '';
-      this.image = '';
-      this.previewImage = null;
-      this.fileslocation = '';
-    },
-    handleFileChange(event) {
-      this.selectedFile = event.target.files[0];
-      console.log('this.selectedFile ', this.selectedFile);
-      const file = event.target.files[0];
-      if (file) {
-        const reader = new FileReader();
-        reader.onloadend = () => {
-          this.previewImage = reader.result; // No necesitas .value aquí
-        };
-        reader.readAsDataURL(file);
-      } else {
-        this.previewImage = null;
-      }
-    },
-
-    setUpdate(item) {
-      console.log(item);
-      this.itemToUpdate = new Employee(item);
-      
-      this.previewImage = item.url;
-
-    },
-    formatDate(yyyy_mm_dd) {
-  const parts = yyyy_mm_dd.split('-');
-  if (parts.length === 3) {
-    const yyyy = parts[0];
-    const mm = parts[1];
-    const dd = parts[2];
-    return `${dd}-${mm}-${yyyy}`;
+  if (result) {
+    Swal.fire({ icon: 'success', title: 'Creado!', timer: 1500, showConfirmButton: false })
+    await fetchData()
   } else {
-    return "Formato de fecha incorrecto";
+    Swal.fire({ icon: 'error', title: 'Error al crear' })
   }
 }
-  },
+
+// Editar empleado
+const handleSubmitEditar = async () => {
+  const modal = document.getElementById('closeEdit')
+  modal?.click()
+
+  if (previewImage.value) itemToUpdate.value.url = previewImage.value
+  if (!itemToUpdate.value.url) itemToUpdate.value.url = ''
+  itemToUpdate.value.href = `profile/${String(itemToUpdate.value.uid)}/perfil.jpg`
+
+  itemToUpdate.value.url = await storageService.uploadImagProfile(selectedFile.value, itemToUpdate.value.toJson())
+  const result = await dbService.updateEmployee(itemToUpdate.value.toJson())
+
+  if (result) {
+    Swal.fire({ icon: 'success', title: 'Empleado actualizado', timer: 1500, showConfirmButton: false })
+    await fetchData()
+  } else {
+    Swal.fire({ icon: 'error', title: 'Error al actualizar' })
+  }
 }
+
+// Eliminar empleado
+const deleteEmployee = async (uid) => {
+  const confirm = await Swal.fire({
+    title: '¿Seguro?',
+    text: 'No podrás deshacer esto',
+    icon: 'warning',
+    showCancelButton: true,
+    confirmButtonText: 'Sí, eliminar',
+  })
+
+  if (confirm.isConfirmed) {
+    const result = await dbService.deleteEmployee(uid)
+    if (result) {
+      Swal.fire({ icon: 'success', title: 'Eliminado', timer: 1500 })
+      await fetchData()
+    } else {
+      Swal.fire({ icon: 'error', title: 'Error al eliminar' })
+    }
+  }
+}
+
+// Utilidades
+const limpiarVariables = () => {
+  name.value = ''
+  ci.value = ''
+  department.value = ''
+  position.value = ''
+  entrydate.value = ''
+  bloodgroup.value = ''
+  fileslocation.value = ''
+  previewImage.value = null
+  selectedFile.value = null
+}
+
+const handleFileChange = (event) => {
+  selectedFile.value = event.target.files[0]
+  const reader = new FileReader()
+  reader.onloadend = () => {
+    previewImage.value = reader.result
+  }
+  reader.readAsDataURL(event.target.files[0])
+}
+
+const setUpdate = (item) => {
+  itemToUpdate.value = new Employee(item)
+  previewImage.value = item.url
+}
+
+const formatDate = (yyyy_mm_dd) => {
+  const [yyyy, mm, dd] = yyyy_mm_dd.split('-')
+  return `${dd}-${mm}-${yyyy}`
+}
+
+onMounted(fetchData)
 </script>

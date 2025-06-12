@@ -53,6 +53,7 @@
     :entrydate="employee.entrydate"
     :fileslocation="employee.fileslocation"
     :department="employee.department"
+    :url="employee.url"
   />
         </div>
 
@@ -86,13 +87,28 @@ export default {
     };
   },
   methods: {
-    async handleSubmit() {
+    async handleSubmit() { //swal cargando
+      Swal.fire({
+        title: 'Consultando...',
+        html: 'Por favor, espere...',
+        allowOutsideClick: false,
+        showConfirmButton: false,
+        willOpen: () => {
+          Swal.showLoading();
+        },
+      });
       console.log('ci:', this.ci);
       this.employee =null
       this.employee = await dbService.getEmployeeByCI(String(this.ci))
-
+     
       if (this.employee) {
-        console.log('Empleado encontrado');
+        console.log('Empleado encontrado'+this.employee.url);
+        Swal.fire({
+          icon: "success",
+          title: "Excelente",
+          text: "El número de cédula si corresponde con un empleado.",
+          timer: 1500
+        });
       } else {
         Swal.fire({
           icon: "info",

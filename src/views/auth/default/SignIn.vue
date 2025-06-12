@@ -46,6 +46,7 @@
                 <div class="d-flex justify-content-center">
                   <button type="submit" class="btn btn-primary">Iniciar sesión</button>
                 </div>
+                <a @click.prevent="$router.push('/')" class="d-block text-center mt-3 btn" >Volver al inicio</a>
               </form>
             </b-card>
           </b-col>

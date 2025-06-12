@@ -8,7 +8,7 @@
     <b-card-body>
       <div class="text-center d-flex justify-content-center align-items-center">
         <div>
-          <img v-if="photoURL" :src="photoURL" alt="profile-img" class="rounded-pill avatar-80 img-fluid" loading="lazy" />
+          <img v-if="url" :src="url" alt="profile-img" class="rounded-pill avatar-80 img-fluid" loading="lazy" />
           <img v-else src="@/assets/images/avatars/01.png" alt="profile-img" class="rounded-pill avatar-80 img-fluid" loading="lazy" />
         </div>
         <div class="mt-2 d-flex flex-column">
@@ -70,7 +70,7 @@ export default {
     entrydate: { type: String, required: true },
     fileslocation: { type: String, required: true },
     rol: { type: String },
-    photoURL: { type: String}
+    url: { type: String}
   }
 }
 </script>
