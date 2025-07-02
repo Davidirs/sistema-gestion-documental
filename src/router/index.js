@@ -19,13 +19,13 @@ const designSystemChildRoutes = (prefix) => [
     name: prefix + '.main',
     meta: { auth: true, name: 'Design System' },
     component: () => import('@/views/design-system/IndexPage.vue')
-  },  
+  }/* ,  
   {
     path: '/dsec',
     name: prefix + 'dsec',
     meta: { auth: true, name: 'dsec'},
     component: () => import('@/views/modules/landing-pages/DSEC.vue')
-  }
+  } */
   /* 
   
   {
@@ -439,7 +439,12 @@ const routes = [
     name: 'errors',
     component: () => import('../layouts/guest/BlankLayout.vue'),
     children: errorRoutes('errors')
-  }
+  },
+        {
+            path: '/:pathMatch(.*)*',
+            redirect: '/errors/404',
+        }
+
 ]
 
 const router = createRouter({

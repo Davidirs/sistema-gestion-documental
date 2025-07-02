@@ -30,24 +30,25 @@
 
               <tbody>
                 <tr v-for="(item, index) in paginatedData" :key="item?.uid">
-  <td>{{ (currentPage - 1) * itemsPerPage + index + 1 }}</td>
+                  <td>{{ (currentPage - 1) * itemsPerPage + index + 1 }}</td>
                   <td class="text-center"><img class="bg-soft-primary rounded img-fluid avatar-40 me-3"
-                      :src="item.url? item.url :require('@/assets/images/avatars/01.png')" alt="profile" loading="lazy" /></td>
+                      :src="item.url ? item.url : require('@/assets/images/avatars/01.png')" alt="profile"
+                      loading="lazy" /></td>
                   <td>{{ item.name }}</td>
                   <td>{{ item.uid }}</td>
                   <td>{{ item.department }}</td>
                   <td>{{ item.position }}</td>
                   <td>{{ item.bloodgroup }}</td>
-                  <td>{{ formatDate(item.entrydate)}}</td>
+                  <td>{{ formatDate(item.entrydate) }}</td>
                   <!-- <td>{{ item.fileslocation }}</td> -->
                   <td>
                     <div class="flex align-items-center list-user-action">
-                      <a class="btn btn-sm btn-icon btn-success mx-1" data-bs-toggle="tooltip" data-bs-placement="top"
+                      <!-- <a class="btn btn-sm btn-icon btn-success mx-1" data-bs-toggle="tooltip" data-bs-placement="top"
                         title="Ver" :href="`/dsec?ci=${item.uid}`" target="_blank">
                         <span class="btn-inner">
                           <icon-component type="outlined" icon-name="eye" />
                         </span>
-                      </a>
+                      </a> -->
                       <button class="btn btn-sm btn-icon btn-warning mx-1" data-bs-placement="top"
                         data-bs-original-title="Edit" data-bs-toggle="modal" data-bs-target="#modalEditarEmpleado"
                         @click="setUpdate(item)">
@@ -65,27 +66,28 @@
                   </td>
                 </tr>
               </tbody>
-             
+
             </table>
-             <nav class="mt-3">
-  <ul class="pagination justify-content-center">
-    <li class="page-item" :class="{ disabled: currentPage === 1 }">
-      <button class="page-link" @click="currentPage--" :disabled="currentPage === 1">Anterior</button>
-    </li>
+            <nav class="mt-3">
+              <ul class="pagination justify-content-center">
+                <li class="page-item" :class="{ disabled: currentPage === 1 }">
+                  <button class="page-link" @click="currentPage--" :disabled="currentPage === 1">Anterior</button>
+                </li>
 
-    <li class="page-item disabled">
-      <span class="page-link">Página {{ currentPage }} de {{ totalPages }}</span>
-    </li>
+                <li class="page-item disabled">
+                  <span class="page-link">Página {{ currentPage }} de {{ totalPages }}</span>
+                </li> 
 
-    <li class="page-item" :class="{ disabled: currentPage === totalPages }">
-      <button class="page-link" @click="currentPage++" :disabled="currentPage === totalPages">Siguiente</button>
-    </li>
-  </ul>
-</nav>
+                <li class="page-item" :class="{ disabled: currentPage === totalPages }">
+                  <button class="page-link" @click="currentPage++"
+                    :disabled="currentPage === totalPages">Siguiente</button>
+                </li>
+              </ul>
+            </nav>
             <div class="text-center">
-  <p>Si no hay empleados, por favor cree alguno.</p>
-</div>
-            
+              <p>Si no hay empleados, por favor cree alguno.</p>
+            </div>
+
           </div>
         </div>
       </div>
@@ -142,10 +144,10 @@
                 </div>
               </b-form-group>
               <b-form-group>
-              <div v-if="previewImage" class="mt-3">
-                <label class="form-label">Vista previa:</label>
-                <img :src="previewImage" alt="Vista previa de la imagen" style="max-width: 200px; max-height: 200px;">
-              </div>
+                <div v-if="previewImage" class="mt-3">
+                  <label class="form-label">Vista previa:</label>
+                  <img :src="previewImage" alt="Vista previa de la imagen" style="max-width: 200px; max-height: 200px;">
+                </div>
               </b-form-group>
               <!-- <b-form-group>
                 <label for="input-101" class="form-label">Ubicación de los expedientes</label>
@@ -185,7 +187,7 @@
               </b-form-group>
               <b-form-group>
                 <label for="input-1303" class="form-label">Seleccione Departamento</label>
-                <b-form-select v-model="itemToUpdate.department" :options="listDepartment.value" id="input-1303"
+                <b-form-select v-model="itemToUpdate.department" :options="listDepartment" id="input-1303"
                   required />
               </b-form-group>
               <b-form-group>
@@ -196,27 +198,41 @@
 
               <b-form-group>
                 <label for="input-101" class="form-label">Grupo Sanguíneo</label>
-                <b-form-input id="input-101" type="text" placeholder="Grupo sanguíneo del empleado" v-model="itemToUpdate.bloodgroup"
-                  required></b-form-input>
+                <b-form-input id="input-101" type="text" placeholder="Grupo sanguíneo del empleado"
+                  v-model="itemToUpdate.bloodgroup" required></b-form-input>
               </b-form-group>
               <b-form-group>
                 <label for="input-107" class="form-label">Fecha de Ingreso </label>
-                <b-form-input id="input-107" type="date" placeholder="18-12-2019" v-model="itemToUpdate.entrydate" locale="es"
-                  required></b-form-input>
+                <b-form-input id="input-107" type="date" placeholder="18-12-2019" v-model="itemToUpdate.entrydate"
+                  locale="es" required></b-form-input>
               </b-form-group>
-              
+
               <b-form-group>
                 <label for="input-101" class="form-label">Foto tipo carnet</label>
+                <!-- <div class="form-group mb-0">
+                  <input type="file" class="form-control" aria-label="file example" @change="handleFileChange" />
+                
+                
+                </div> -->
                 <div class="form-group mb-0">
-                  <input type="file" class="form-control" aria-label="file example"
+                  <input type="file" class="form-control" aria-label="file example" required=""
                     @change="handleFileChange" />
                 </div>
               </b-form-group>
               <b-form-group>
-              <div class="mt-3 d-flex justify-content-around align-items-center">
-                <label class="form-label">Vista previa:</label>
-                <img :src="previewImage?previewImage:itemToUpdate.url?itemToUpdate.url:require('@/assets/images/avatars/01.png')" alt="Vista previa de la imagen" style="max-width: 200px; max-height: 200px;">
-              </div>
+                <div class="mt-3 d-flex justify-content-around align-items-center">
+                  <label class="form-label">Vista previa:</label>
+                  <img
+                    :src="previewImage ? previewImage : itemToUpdate.url ? itemToUpdate.url : require('@/assets/images/avatars/01.png')"
+                    alt="Vista previa de la imagen" style="max-width: 200px; max-height: 200px;">
+                </div>
+              </b-form-group>
+              
+              <b-form-group>
+                <div v-if="previewImage" class="mt-3">
+                  <label class="form-label">Vista previa:</label>
+                  <img :src="previewImage" alt="Vista previa de la imagen" style="max-width: 200px; max-height: 200px;">
+                </div>
               </b-form-group>
               <!-- <b-form-group>
                 <label for="input-101" class="form-label">Ubicación de los expedientes</label>
@@ -254,8 +270,8 @@ const position = ref('')
 const entrydate = ref('')
 const bloodgroup = ref('')
 const fileslocation = ref('')
+ const selectedFile = ref(null)
 const previewImage = ref(null)
-const selectedFile = ref(null)
 const itemToUpdate = ref(null)
 
 // Computed para paginación
@@ -272,10 +288,12 @@ const totalPages = computed(() =>
 // Cargar datos iniciales
 const fetchData = async () => {
   const departments = await dbService.getDepartments()
+  console.log(departments)
   listDepartment.value = departments.map(dep => ({
     value: dep.id,
     text: dep.name,
   }))
+  console.log(listDepartment.value)
   tableData.value = await dbService.getEmployees()
   limpiarVariables()
 }
@@ -293,7 +311,8 @@ const handleSubmitCrear = async () => {
     url: '',
     href: `profile/${String(ci.value)}/perfil.jpg`,
   })
-
+  console.log(  "selectedFile.value")
+  console.log(  selectedFile.value)
   Swal.fire({ title: 'Creando...', allowOutsideClick: false, showConfirmButton: false, willOpen: () => Swal.showLoading() })
 
   employee.url = await storageService.uploadImagProfile(selectedFile.value, employee.toJson())
@@ -316,9 +335,14 @@ const handleSubmitEditar = async () => {
   if (previewImage.value) itemToUpdate.value.url = previewImage.value
   if (!itemToUpdate.value.url) itemToUpdate.value.url = ''
   itemToUpdate.value.href = `profile/${String(itemToUpdate.value.uid)}/perfil.jpg`
-
-  itemToUpdate.value.url = await storageService.uploadImagProfile(selectedFile.value, itemToUpdate.value.toJson())
-  const result = await dbService.updateEmployee(itemToUpdate.value.toJson())
+console.log(selectedFile.value)
+  if (selectedFile.value) {
+  itemToUpdate.value.url = await storageService.uploadImagProfile(
+    selectedFile.value,
+    itemToUpdate.value.toJson()
+  )
+}
+const result = await dbService.updateEmployee(itemToUpdate.value.toJson())
 
   if (result) {
     Swal.fire({ icon: 'success', title: 'Empleado actualizado', timer: 1500, showConfirmButton: false })
@@ -362,15 +386,24 @@ const limpiarVariables = () => {
   selectedFile.value = null
 }
 
-const handleFileChange = (event) => {
+/* const handleFileChange = (event) => {
   selectedFile.value = event.target.files[0]
+  console.log(selectedFile.value)
   const reader = new FileReader()
   reader.onloadend = () => {
     previewImage.value = reader.result
   }
   reader.readAsDataURL(event.target.files[0])
 }
+ */
 
+const handleFileChange = (e) => {
+  const fileList = e.target .files
+  if (fileList && fileList.length > 0) {
+    selectedFile.value = fileList[0]
+    previewImage.value = URL.createObjectURL(fileList[0])
+  }
+}
 const setUpdate = (item) => {
   itemToUpdate.value = new Employee(item)
   previewImage.value = item.url
